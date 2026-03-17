@@ -3,8 +3,20 @@
    ============================================ */
 
 // ── PRELOADER ──────────────────────────────
-window.addEventListener('load', () => {
+window.addEventListener('load', removePreloader);
+
+// Fallback safety timeout if 'load' event hangs
+const maxLoaderTime = setTimeout(removePreloader, 4000);
+
+let preloaderRemoved = false;
+
+function removePreloader() {
+    if (preloaderRemoved) return;
+    preloaderRemoved = true;
+    clearTimeout(maxLoaderTime);
+
     const loader = document.getElementById('loader');
+    if (!loader) return;
 
     // La barra termina en 0.7s + 0.9s = 1.6s
     // Pequeño margen → fade arranca a los 1.7s
@@ -17,7 +29,7 @@ window.addEventListener('load', () => {
             loader.style.display = 'none';
         }, 600);
     }, 1700);
-});
+}
 
 // ── NAVBAR DINÁMICA ────────────────────────
 window.addEventListener('scroll', () => {
@@ -106,6 +118,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // ── WHATSAPP CHAT FLOTANTE ─────────────────
 const WA_NUMBER = '593984990787'; // Gravity Estudio Creativo
 
+let wapTimeout;
+
 function toggleWap() {
     const widget = document.getElementById('wapWidget');
     const bubble = document.getElementById('wapBubble');
@@ -115,7 +129,14 @@ function toggleWap() {
     if (isOpen) {
         bubble.classList.add('hidden');
         // Animar mensajes con delay escalonado
-        setTimeout(() => animateWapMsgs(), 200);
+        clearTimeout(wapTimeout);
+        wapTimeout = setTimeout(() => {
+            if (widget.classList.contains('open')) {
+                animateWapMsgs();
+            }
+        }, 200);
+    } else {
+        clearTimeout(wapTimeout);
     }
 }
 
