@@ -1638,64 +1638,40 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 * { touch-action: manipulation; }
 * { -webkit-tap-highlight-color: transparent; }
 
-/* ── En touch: animaciones activadas por scroll (IntersectionObserver) ──
-   Las clases .in-view-* las agrega el JS cuando el elemento entra en pantalla */
+/* ── SERVICE CARD — tap activa la línea y el ícono ── */
+.service-card.touch-active { background: var(--off-white); }
+.service-card.touch-active::before { color: rgba(247,204,34,0.15); }
+.service-card.touch-active::after  { width: 100%; }
+.service-card.touch-active .service-icon { background: var(--yellow); color: var(--ink); }
 
-/* Service card: línea amarilla + ícono */
-@media (hover: none) and (pointer: coarse) {
-    .service-card.in-view::after  { width: 100%; }
-    .service-card.in-view .service-icon {
-        background: var(--yellow);
-        color: var(--ink);
-    }
-    .service-card.in-view::before { color: rgba(247,204,34,0.15); }
-    .service-card.in-view { background: var(--off-white); }
-}
+/* ── PORTFOLIO — tap muestra el overlay con título ── */
+.portfolio-item.touch-active .portfolio-inner { opacity: 1; }
+.portfolio-item.touch-active { transform: scale(1.02); }
 
-/* Pack card: borde y sombra */
-@media (hover: none) and (pointer: coarse) {
-    .pack-card.in-view {
-        box-shadow: var(--shadow-md);
-        border-color: var(--border-2);
-    }
-    .pack-featured.in-view {
-        box-shadow: var(--shadow-lg);
-        border-color: var(--yellow);
-    }
-}
+/* ── TEAM CARD — tap muestra las redes sociales ── */
+.team-card.touch-active .team-socials { opacity: 1; transform: translateY(0); }
+.team-card.touch-active { box-shadow: var(--shadow-lg); border-color: var(--border-2); }
 
-/* Portfolio: overlay visible siempre en touch */
+/* ── Deshabilitar :hover pegado en touch ── */
 @media (hover: none) and (pointer: coarse) {
-    .portfolio-item .portfolio-inner {
-        opacity: 1;
-        background: rgba(10,10,10,0.55); /* más sutil que en desktop */
-    }
-    /* Al tocar, más intenso */
-    .portfolio-item:active .portfolio-inner {
-        background: rgba(10,10,10,0.82);
-    }
+    .service-card:hover { background: var(--white); }
+    .service-card:hover::after { width: 0; }
+    .service-card:hover .service-icon { background: var(--surface); color: var(--ink-3); }
+
+    .pack-card:hover     { transform: none; box-shadow: none; border-color: var(--border); }
+    .pack-featured:hover { transform: scale(1.04); border-color: var(--ink); }
+
     .portfolio-item:hover { transform: none; }
-}
+    .portfolio-item:hover .portfolio-inner { opacity: 0; }
 
-/* Team card: sociales visibles */
-@media (hover: none) and (pointer: coarse) {
-    .team-card.in-view .team-socials {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .team-card:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: var(--border);
-    }
-}
+    .team-card:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .team-card:hover .team-socials { opacity: 0; transform: translateY(8px); }
 
-/* Botones — :active como feedback táctil */
-@media (hover: none) and (pointer: coarse) {
-    .btn-primary:hover  { transform: none; box-shadow: none; }
+    /* Feedback táctil en botones con :active */
+    .btn-primary:hover  { transform: none; box-shadow: none; background: var(--ink); border-color: var(--ink); color: var(--white); }
     .btn-primary:active { transform: scale(0.96); background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 
-    .btn-secondary:hover  { transform: none; background: transparent; }
+    .btn-secondary:hover  { transform: none; background: transparent; border-color: var(--border-2); }
     .btn-secondary:active { transform: scale(0.96); background: var(--surface); }
 
     .pack-cta:hover  { transform: none; }
@@ -1704,11 +1680,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .btn-nav:hover  { transform: none; background: var(--ink) !important; color: var(--white) !important; }
     .btn-nav:active { background: var(--yellow) !important; color: var(--ink) !important; }
 
-    .wap-btn:hover  { transform: none; background: var(--ink); }
+    .wap-btn:hover  { transform: none; background: var(--ink); box-shadow: 0 8px 28px rgba(10,10,10,0.25); }
     .wap-btn:active { transform: scale(0.92); background: var(--yellow); }
 
     .wap-quick:hover  { background: var(--white); border-color: var(--border-2); color: var(--ink); }
-    .wap-quick:active { background: var(--yellow); border-color: var(--yellow); }
+    .wap-quick:active { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 
     /* Reveal más rápido en touch */
     .will-reveal {

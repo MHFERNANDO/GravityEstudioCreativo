@@ -88,9 +88,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ── SCROLL REVEAL + IN-VIEW PARA TOUCH ─────
-// En desktop: revealed solo quita la opacidad inicial
-// En touch:   revealed + in-view activa las animaciones que normalmente son hover
+// ── SCROLL REVEAL ──────────────────────────
 const revealElements = document.querySelectorAll(
     '.service-card, .pack-card, .portfolio-item, .hero-card, .team-card'
 );
@@ -102,10 +100,6 @@ const revealObserver = new IntersectionObserver((entries) => {
             setTimeout(() => {
                 entry.target.classList.remove('will-reveal');
                 entry.target.classList.add('revealed');
-                // En touch: activar estado visual que normalmente es hover
-                if (isTouchDevice()) {
-                    entry.target.classList.add('in-view');
-                }
             }, delay);
             revealObserver.unobserve(entry.target);
         }
@@ -116,6 +110,63 @@ revealElements.forEach(el => {
     el.classList.add('will-reveal');
     revealObserver.observe(el);
 });
+
+// ── TOUCH INTERACTIONS ─────────────────────
+// Reemplaza el :hover en dispositivos táctiles con touchstart/touchend
+
+// 1. SERVICE CARDS — línea amarilla + ícono amarillo al tocar
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('touchstart', function () {
+        // Quitar activo de otras cards
+        document.querySelectorAll('.service-card').forEach(c => c.classList.remove('touch-active'));
+        this.classList.add('touch-active');
+    }, { passive: true });
+});
+
+// Quitar al tocar en otro lado
+document.addEventListener('touchstart', function (e) {
+    if (!e.target.closest('.service-card')) {
+        document.querySelectorAll('.service-card.touch-active')
+            .forEach(c => c.classList.remove('touch-active'));
+    }
+}, { passive: true });
+
+// 2. PORTFOLIO ITEMS — mostrar overlay con nombre del proyecto al tocar
+document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.addEventListener('touchstart', function () {
+        const isActive = this.classList.contains('touch-active');
+        // Cerrar todos
+        document.querySelectorAll('.portfolio-item.touch-active')
+            .forEach(el => el.classList.remove('touch-active'));
+        // Toggle del tocado
+        if (!isActive) this.classList.add('touch-active');
+    }, { passive: true });
+});
+
+// Cerrar portfolio overlay al tocar fuera
+document.addEventListener('touchstart', function (e) {
+    if (!e.target.closest('.portfolio-item')) {
+        document.querySelectorAll('.portfolio-item.touch-active')
+            .forEach(el => el.classList.remove('touch-active'));
+    }
+}, { passive: true });
+
+// 3. TEAM CARDS — mostrar redes sociales al tocar
+document.querySelectorAll('.team-card').forEach(card => {
+    card.addEventListener('touchstart', function () {
+        const isActive = this.classList.contains('touch-active');
+        document.querySelectorAll('.team-card.touch-active')
+            .forEach(c => c.classList.remove('touch-active'));
+        if (!isActive) this.classList.add('touch-active');
+    }, { passive: true });
+});
+
+document.addEventListener('touchstart', function (e) {
+    if (!e.target.closest('.team-card')) {
+        document.querySelectorAll('.team-card.touch-active')
+            .forEach(c => c.classList.remove('touch-active'));
+    }
+}, { passive: true });
 
 // ── FILTROS DE PORTAFOLIO ──────────────────
 document.querySelectorAll('.filter-btn').forEach(btn => {
