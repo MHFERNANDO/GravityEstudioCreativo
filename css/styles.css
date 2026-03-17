@@ -696,6 +696,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     border-color: var(--ink);
     transform: scale(1.04);
     box-shadow: var(--shadow-lg);
+    will-change: transform;
+}
+
+.pack-featured.revealed {
+    transform: scale(1.04);
 }
 
 .pack-featured:hover {
@@ -1347,6 +1352,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .form-row { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 5%; }
     .footer-bottom { padding: 1.2rem 5%; }
+}
+
+/* ── Scroll reveal ── */
+.will-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.pack-featured.will-reveal  { transform: scale(1.04) translateY(24px); }
+.pack-featured.revealed     { transform: scale(1.04) translateY(0); }
+
+.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ============================================
