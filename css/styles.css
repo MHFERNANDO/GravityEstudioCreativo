@@ -1381,7 +1381,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     flex-direction: column;
     align-items: flex-end;
     gap: 12px;
-    pointer-events: none;
 }
 
 .wap-btn {
@@ -1397,7 +1396,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     transition: transform 0.3s var(--spring), box-shadow 0.3s var(--ease), background 0.2s;
     position: relative;
     flex-shrink: 0;
-    pointer-events: auto;
 }
 
 .wap-btn:hover {
@@ -1452,14 +1450,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     transform-origin: bottom right;
     transform: scale(0.85) translateY(12px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: transform 0.35s var(--spring), opacity 0.3s var(--ease);
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 8999;
+    transition:
+        transform  0.35s var(--spring),
+        opacity    0.3s  var(--ease),
+        visibility 0s    0.35s;
 }
 
 .wap-widget.open .wap-panel {
     transform: scale(1) translateY(0);
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition:
+        transform  0.35s var(--spring),
+        opacity    0.3s  var(--ease),
+        visibility 0s    0s;
 }
 
 .wap-header {
@@ -1616,5 +1627,125 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 640px) {
     .wap-widget { bottom: 20px; right: 16px; }
-    .wap-panel  { width: calc(100vw - 32px); max-width: 320px; }
+    .wap-panel  { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+}
+
+/* ============================================
+   TOUCH / MOBILE FIXES
+   ============================================ */
+
+/* Elimina el delay de 300ms en tap (iOS/Android) */
+* { touch-action: manipulation; }
+
+/* Evita el highlight azul/gris al tocar en iOS */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Portfolio overlay activo por tap en touch */
+.portfolio-item.touch-active .portfolio-inner {
+    opacity: 1;
+}
+
+/* Servicios: hover activado por touch */
+.service-card.touch-hover { background: var(--off-white); }
+.service-card.touch-hover::before { color: rgba(247,204,34,0.15); }
+.service-card.touch-hover::after { width: 100%; }
+.service-card.touch-hover .service-icon {
+    background: var(--yellow);
+    color: var(--ink);
+}
+
+/* En touch desactivamos :hover para evitar estados pegados */
+@media (hover: none) and (pointer: coarse) {
+    /* Cards — sin hover transform que se quede pegado */
+    .service-card:hover { background: var(--white); }
+    .service-card:hover::before { color: var(--surface); }
+    .service-card:hover::after { width: 0; }
+    .service-card:hover .service-icon {
+        background: var(--surface);
+        color: var(--ink-3);
+    }
+
+    /* Pack cards — sin translateY que se quede pegado */
+    .pack-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: var(--border);
+    }
+    .pack-featured:hover {
+        transform: scale(1.04);
+        border-color: var(--ink);
+    }
+
+    /* Portfolio — sin hover, usa touch-active */
+    .portfolio-item:hover { transform: none; }
+    .portfolio-item:hover .portfolio-inner { opacity: 0; }
+
+    /* Team cards — sin hover */
+    .team-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: var(--border);
+    }
+    .team-card:hover .team-socials { opacity: 0; transform: translateY(8px); }
+
+    /* Botones — feedback táctil con :active en vez de :hover */
+    .btn-primary:hover {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--white);
+        transform: none;
+        box-shadow: none;
+    }
+    .btn-primary:active {
+        background: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--ink);
+        transform: scale(0.97);
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--border-2);
+        background: transparent;
+        transform: none;
+    }
+    .btn-secondary:active {
+        background: var(--surface);
+        transform: scale(0.97);
+    }
+
+    /* Pack CTA */
+    .pack-cta:hover {
+        background: var(--surface);
+        color: var(--ink);
+        transform: none;
+    }
+    .pack-cta:active { transform: scale(0.97); opacity: 0.85; }
+
+    /* Wap btn */
+    .wap-btn:hover {
+        transform: none;
+        background: var(--ink);
+        box-shadow: 0 8px 28px rgba(10,10,10,0.25);
+    }
+    .wap-btn:active {
+        transform: scale(0.93);
+        background: var(--yellow);
+    }
+
+    /* Nav links */
+    .btn-nav:hover {
+        background: var(--ink) !important;
+        color: var(--white) !important;
+        transform: none;
+    }
+    .btn-nav:active {
+        background: var(--yellow) !important;
+        color: var(--ink) !important;
+    }
+
+    /* Scroll reveal más corto en touch */
+    .will-reveal {
+        transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
+                    transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
 }
