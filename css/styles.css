@@ -1634,118 +1634,85 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    TOUCH / MOBILE FIXES
    ============================================ */
 
-/* Elimina el delay de 300ms en tap (iOS/Android) */
+/* Elimina delay de 300ms en tap */
 * { touch-action: manipulation; }
-
-/* Evita el highlight azul/gris al tocar en iOS */
 * { -webkit-tap-highlight-color: transparent; }
 
-/* Portfolio overlay activo por tap en touch */
-.portfolio-item.touch-active .portfolio-inner {
-    opacity: 1;
-}
+/* ── En touch: animaciones activadas por scroll (IntersectionObserver) ──
+   Las clases .in-view-* las agrega el JS cuando el elemento entra en pantalla */
 
-/* Servicios: hover activado por touch */
-.service-card.touch-hover { background: var(--off-white); }
-.service-card.touch-hover::before { color: rgba(247,204,34,0.15); }
-.service-card.touch-hover::after { width: 100%; }
-.service-card.touch-hover .service-icon {
-    background: var(--yellow);
-    color: var(--ink);
-}
-
-/* En touch desactivamos :hover para evitar estados pegados */
+/* Service card: línea amarilla + ícono */
 @media (hover: none) and (pointer: coarse) {
-    /* Cards — sin hover transform que se quede pegado */
-    .service-card:hover { background: var(--white); }
-    .service-card:hover::before { color: var(--surface); }
-    .service-card:hover::after { width: 0; }
-    .service-card:hover .service-icon {
-        background: var(--surface);
-        color: var(--ink-3);
+    .service-card.in-view::after  { width: 100%; }
+    .service-card.in-view .service-icon {
+        background: var(--yellow);
+        color: var(--ink);
     }
+    .service-card.in-view::before { color: rgba(247,204,34,0.15); }
+    .service-card.in-view { background: var(--off-white); }
+}
 
-    /* Pack cards — sin translateY que se quede pegado */
-    .pack-card:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: var(--border);
+/* Pack card: borde y sombra */
+@media (hover: none) and (pointer: coarse) {
+    .pack-card.in-view {
+        box-shadow: var(--shadow-md);
+        border-color: var(--border-2);
     }
-    .pack-featured:hover {
-        transform: scale(1.04);
-        border-color: var(--ink);
+    .pack-featured.in-view {
+        box-shadow: var(--shadow-lg);
+        border-color: var(--yellow);
     }
+}
 
-    /* Portfolio — sin hover, usa touch-active */
+/* Portfolio: overlay visible siempre en touch */
+@media (hover: none) and (pointer: coarse) {
+    .portfolio-item .portfolio-inner {
+        opacity: 1;
+        background: rgba(10,10,10,0.55); /* más sutil que en desktop */
+    }
+    /* Al tocar, más intenso */
+    .portfolio-item:active .portfolio-inner {
+        background: rgba(10,10,10,0.82);
+    }
     .portfolio-item:hover { transform: none; }
-    .portfolio-item:hover .portfolio-inner { opacity: 0; }
+}
 
-    /* Team cards — sin hover */
+/* Team card: sociales visibles */
+@media (hover: none) and (pointer: coarse) {
+    .team-card.in-view .team-socials {
+        opacity: 1;
+        transform: translateY(0);
+    }
     .team-card:hover {
         transform: none;
         box-shadow: none;
         border-color: var(--border);
     }
-    .team-card:hover .team-socials { opacity: 0; transform: translateY(8px); }
+}
 
-    /* Botones — feedback táctil con :active en vez de :hover */
-    .btn-primary:hover {
-        background: var(--ink);
-        border-color: var(--ink);
-        color: var(--white);
-        transform: none;
-        box-shadow: none;
-    }
-    .btn-primary:active {
-        background: var(--yellow);
-        border-color: var(--yellow);
-        color: var(--ink);
-        transform: scale(0.97);
-    }
+/* Botones — :active como feedback táctil */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary:hover  { transform: none; box-shadow: none; }
+    .btn-primary:active { transform: scale(0.96); background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 
-    .btn-secondary:hover {
-        border-color: var(--border-2);
-        background: transparent;
-        transform: none;
-    }
-    .btn-secondary:active {
-        background: var(--surface);
-        transform: scale(0.97);
-    }
+    .btn-secondary:hover  { transform: none; background: transparent; }
+    .btn-secondary:active { transform: scale(0.96); background: var(--surface); }
 
-    /* Pack CTA */
-    .pack-cta:hover {
-        background: var(--surface);
-        color: var(--ink);
-        transform: none;
-    }
-    .pack-cta:active { transform: scale(0.97); opacity: 0.85; }
+    .pack-cta:hover  { transform: none; }
+    .pack-cta:active { transform: scale(0.96); opacity: 0.85; }
 
-    /* Wap btn */
-    .wap-btn:hover {
-        transform: none;
-        background: var(--ink);
-        box-shadow: 0 8px 28px rgba(10,10,10,0.25);
-    }
-    .wap-btn:active {
-        transform: scale(0.93);
-        background: var(--yellow);
-    }
+    .btn-nav:hover  { transform: none; background: var(--ink) !important; color: var(--white) !important; }
+    .btn-nav:active { background: var(--yellow) !important; color: var(--ink) !important; }
 
-    /* Nav links */
-    .btn-nav:hover {
-        background: var(--ink) !important;
-        color: var(--white) !important;
-        transform: none;
-    }
-    .btn-nav:active {
-        background: var(--yellow) !important;
-        color: var(--ink) !important;
-    }
+    .wap-btn:hover  { transform: none; background: var(--ink); }
+    .wap-btn:active { transform: scale(0.92); background: var(--yellow); }
 
-    /* Scroll reveal más corto en touch */
+    .wap-quick:hover  { background: var(--white); border-color: var(--border-2); color: var(--ink); }
+    .wap-quick:active { background: var(--yellow); border-color: var(--yellow); }
+
+    /* Reveal más rápido en touch */
     .will-reveal {
-        transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
-                    transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1),
+                    transform 0.35s cubic-bezier(0.16,1,0.3,1);
     }
 }
