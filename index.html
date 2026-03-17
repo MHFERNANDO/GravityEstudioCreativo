@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Estudio Creativo | Elevamos tu marca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/logo.jpg" type="image/x-icon">
+</head>
+<body class="loading">
+
+    <!-- ======= PRELOADER ======= -->
+    <div id="loader" class="preloader">
+        <div class="loader-content">
+            <img src="assets/logo.jpg" alt="Gravity Logo" class="loader-logo">
+            <p class="loader-tagline"><span>G</span>ravity Estudio</p>
+            <div class="loader-line-container">
+                <div class="loader-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= NAVBAR ======= -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="assets/logo.jpg" alt="Gravity Logo" class="main-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#packs">Packs</a></li>
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#portafolio">Portafolio</a></li>
+            <li><a href="#contacto" class="btn-nav">Hablemos</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Menú" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ======= HERO ======= -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✦ Estudio Creativo · Cuenca, Ecuador</div>
+            <h1>Creatividad que<br>desafía la <em>gravedad</em></h1>
+            <p>Branding, contenido digital y estrategia para marcas que buscan el siguiente nivel.</p>
+            <div class="cta-group">
+                <a href="#packs" class="btn-primary">Ver Packs</a>
+                <a href="https://wa.me/593984990787" target="_blank" class="btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L0 24l6.335-1.507A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.5-5.065-1.373l-.363-.215-3.762.896.954-3.671-.236-.374A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num">+50</span>
+                    <span class="stat-label">Marcas</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">3+</span>
+                    <span class="stat-label">Años</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Digital</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-blob"></div>
+            <div class="hero-card floating">
+                <span class="card-tag">Branding</span>
+                <p>Identidad visual con propósito</p>
+            </div>
+            <div class="hero-card floating delay-1">
+                <span class="card-tag">Social Media</span>
+                <p>Comunidades que convierten</p>
+            </div>
+            <div class="hero-card floating delay-2">
+                <span class="card-tag">Ads</span>
+                <p>Campañas que venden</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======= SERVICIOS ======= -->
+    <section id="servicios" class="services">
+        <div class="section-header">
+            <span class="section-tag">Lo que hacemos</span>
+            <h2>Nuestros Servicios</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-num="01">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Branding</h3>
+                <p>Identidad visual con propósito y personalidad única. Logos, paletas, tipografías y guías de marca.</p>
+            </div>
+            <div class="service-card" data-num="02">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+                <h3>Content Creation</h3>
+                <p>Fotografía y video diseñados para detener el scroll y generar impacto real en redes.</p>
+            </div>
+            <div class="service-card" data-num="03">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>Social Media</h3>
+                <p>Estrategias y gestión de redes que convierten seguidores en comunidad y comunidad en ventas.</p>
+            </div>
+            <div class="service-card" data-num="04">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+                </div>
+                <h3>Pauta Digital</h3>
+                <p>Implementación y optimización de campañas en Meta Ads, Google Ads y TikTok Ads.</p>
+            </div>
+            <div class="service-card" data-num="05">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <h3>Estrategia Digital</h3>
+                <p>Planificación, segmentación de mercado y objetivos publicitarios con métricas de resultados.</p>
+            </div>
+            <div class="service-card" data-num="06">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <h3>Reportes & Métricas</h3>
+                <p>Informes mensuales claros con datos reales para tomar decisiones inteligentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= PACKS ======= -->
+    <section id="packs" class="packs">
+        <div class="section-header">
+            <span class="section-tag">Elige tu plan</span>
+            <h2>Packs de Social Media</h2>
+            <p>Todos los packs incluyen: estrategia, segmentación, cronopost mensual, producción audiovisual, monitoreo e informe mensual.</p>
+        </div>
+        <div class="packs-grid">
+
+            <!-- PACK INICIAL -->
+            <div class="pack-card">
+                <div class="pack-header">
+                    <span class="pack-label">Inicial</span>
+                    <p class="pack-desc">Perfecto para empezar</p>
+                </div>
+                <ul class="pack-features">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Creación de estrategia</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Segmentación de mercado</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Determinación de objetivos</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cronopost mensual</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Producción audiovisual</li>
+                    <li class="feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>4 publicaciones / mes</strong></li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Ads en 1 plataforma</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoreo y respuesta</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Informe mensual</li>
+                </ul>
+                <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Inicial" target="_blank" class="pack-cta">Quiero este pack</a>
+            </div>
+
+            <!-- PACK INTERMEDIO -->
+            <div class="pack-card">
+                <div class="pack-header">
+                    <span class="pack-label">Intermedio</span>
+                    <p class="pack-desc">Para crecer con consistencia</p>
+                </div>
+                <ul class="pack-features">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Creación de estrategia</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Segmentación de mercado</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Determinación de objetivos</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cronopost mensual</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Producción audiovisual</li>
+                    <li class="feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>6 publicaciones / mes</strong></li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Ads en 1 plataforma</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoreo y respuesta</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Informe mensual</li>
+                </ul>
+                <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Intermedio" target="_blank" class="pack-cta">Quiero este pack</a>
+            </div>
+
+            <!-- PACK AVANZADO — POPULAR -->
+            <div class="pack-card pack-featured">
+                <div class="pack-badge">Más popular</div>
+                <div class="pack-header">
+                    <span class="pack-label">Avanzado</span>
+                    <p class="pack-desc">Para marcas que quieren escalar</p>
+                </div>
+                <ul class="pack-features">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Creación de estrategia</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Segmentación de mercado</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Determinación de objetivos</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cronopost mensual</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Producción audiovisual</li>
+                    <li class="feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>8 publicaciones / mes</strong></li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Ads en 2 plataformas</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoreo y respuesta</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Informe mensual</li>
+                </ul>
+                <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Avanzado" target="_blank" class="pack-cta">Quiero este pack</a>
+            </div>
+
+            <!-- PACK PRO -->
+            <div class="pack-card">
+                <div class="pack-header">
+                    <span class="pack-label">Pro</span>
+                    <p class="pack-desc">Máxima presencia digital</p>
+                </div>
+                <ul class="pack-features">
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Creación de estrategia</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Segmentación de mercado</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Determinación de objetivos</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cronopost mensual</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Producción audiovisual</li>
+                    <li class="feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>12 publicaciones / mes</strong></li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Ads en 2 plataformas</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoreo y respuesta</li>
+                    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Informe mensual</li>
+                </ul>
+                <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Pro" target="_blank" class="pack-cta">Quiero este pack</a>
+            </div>
+
+        </div>
+        <p class="packs-note">¿No sabes cuál elegir? <a href="https://wa.me/593984990787?text=Hola!%20Necesito%20asesoría%20para%20elegir%20un%20pack" target="_blank">Escríbenos y te asesoramos sin costo ✦</a></p>
+    </section>
+
+    <!-- ======= CLIENTES (SLIDER) ======= -->
+    <section id="clientes" class="clients">
+        <div class="section-header">
+            <span class="section-tag">Confianza ganada</span>
+            <h2>Marcas que han crecido con nosotros</h2>
+        </div>
+        <div class="clients-track-wrapper">
+            <div class="clients-track">
+                <!-- Duplicados para loop infinito -->
+                <div class="client-logo">Marca 01</div>
+                <div class="client-logo">Marca 02</div>
+                <div class="client-logo">Marca 03</div>
+                <div class="client-logo">Marca 04</div>
+                <div class="client-logo">Marca 05</div>
+                <div class="client-logo">Marca 06</div>
+                <div class="client-logo">Marca 07</div>
+                <div class="client-logo">Marca 08</div>
+                <!-- Copia para el loop -->
+                <div class="client-logo">Marca 01</div>
+                <div class="client-logo">Marca 02</div>
+                <div class="client-logo">Marca 03</div>
+                <div class="client-logo">Marca 04</div>
+                <div class="client-logo">Marca 05</div>
+                <div class="client-logo">Marca 06</div>
+                <div class="client-logo">Marca 07</div>
+                <div class="client-logo">Marca 08</div>
+            </div>
+        </div>
+        <!-- <p class="clients-note">Cuando tengas los logos de tus clientes, reemplaza los textos "Marca 0X" por etiquetas <code>&lt;img&gt;</code></p> -->
+    </section>
+
+    <!-- ======= NOSOTROS ======= -->
+    <section id="nosotros" class="team">
+        <div class="section-header">
+            <span class="section-tag">Las personas detrás</span>
+            <h2>El equipo Gravity</h2>
+            <p>Diseñadores, fotógrafos, estrategas y creadores de contenido que trabajan juntos para que tu marca vuele.</p>
+        </div>
+        <div class="team-grid">
+
+            <div class="team-card">
+                <div class="team-photo">
+                    <!-- Reemplaza con: <img src="assets/equipo/nombre.jpg" alt="Nombre"> -->
+                    <div class="team-photo-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Nombre Apellido</h3>
+                    <span class="team-role">Director Creativo</span>
+                    <p>Visionario detrás de cada concepto. Transforma ideas en estrategias que conectan marcas con personas.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-photo">
+                    <div class="team-photo-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Nombre Apellido</h3>
+                    <span class="team-role">Fotógrafa & Directora de Arte</span>
+                    <p>Captura la esencia de cada marca con un ojo que encuentra la imagen perfecta en cada encuadre.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-photo">
+                    <div class="team-photo-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Nombre Apellido</h3>
+                    <span class="team-role">Estratega de Social Media</span>
+                    <p>Convierte datos en decisiones. Diseña estrategias que hacen crecer comunidades y generan ventas reales.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-photo">
+                    <div class="team-photo-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Nombre Apellido</h3>
+                    <span class="team-role">Productor Audiovisual</span>
+                    <p>Del guion al corte final. Produce videos y reels que detienen el scroll y cuentan historias que venden.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======= PORTAFOLIO ======= -->
+    <section id="portafolio" class="portfolio">
+        <div class="section-header">
+            <span class="section-tag">Nuestro trabajo</span>
+            <h2>Proyectos Destacados</h2>
+        </div>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="social">Social Media</button>
+            <button class="filter-btn" data-filter="video">Video</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-cat="branding">
+                <div class="portfolio-inner">
+                    <span class="portfolio-cat">Branding</span>
+                    <h4>Identidad Visual</h4>
+                </div>
+            </div>
+            <div class="portfolio-item large" data-cat="social">
+                <div class="portfolio-inner">
+                    <span class="portfolio-cat">Social Media</span>
+                    <h4>Campañas Digitales</h4>
+                </div>
+            </div>
+            <div class="portfolio-item" data-cat="video">
+                <div class="portfolio-inner">
+                    <span class="portfolio-cat">Video</span>
+                    <h4>Producción Audiovisual</h4>
+                </div>
+            </div>
+            <div class="portfolio-item" data-cat="branding">
+                <div class="portfolio-inner">
+                    <span class="portfolio-cat">Branding</span>
+                    <h4>Rediseño de Marca</h4>
+                </div>
+            </div>
+            <div class="portfolio-item" data-cat="social">
+                <div class="portfolio-inner">
+                    <span class="portfolio-cat">Social Media</span>
+                    <h4>Estrategia de Contenido</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= CONTACTO ======= -->
+    <section id="contacto" class="contact">
+        <div class="contact-inner">
+            <div class="contact-text">
+                <span class="section-tag">Empecemos</span>
+                <h2>¿Listo para el lanzamiento?</h2>
+                <p>Cuéntanos sobre tu marca y diseñamos juntos la estrategia perfecta para llevarla al siguiente nivel.</p>
+                <div class="contact-channels">
+                    <a href="https://wa.me/593984990787" target="_blank" class="channel-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L0 24l6.335-1.507A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.5-5.065-1.373l-.363-.215-3.762.896.954-3.671-.236-.374A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        WhatsApp directo
+                    </a>
+                    <a href="https://instagram.com/gravityestudiocreativo" target="_blank" class="channel-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        @gravityestudiocreativo
+                    </a>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="handleForm(event)">
+                <div class="form-row">
+                    <input type="text" placeholder="Tu nombre" required>
+                    <input type="email" placeholder="Tu email" required>
+                </div>
+                <input type="text" placeholder="Nombre de tu empresa / marca">
+                <select>
+                    <option value="" disabled selected>¿Qué pack te interesa?</option>
+                    <option>Pack Inicial</option>
+                    <option>Pack Intermedio</option>
+                    <option>Pack Avanzado</option>
+                    <option>Pack Pro</option>
+                    <option>Tengo dudas, necesito asesoría</option>
+                </select>
+                <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="4"></textarea>
+                <button type="submit" class="btn-primary">Enviar mensaje ✦</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ======= FOOTER ======= -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="assets/logo.jpg" alt="Gravity Logo" class="footer-logo">
+                <p>Gravity Estudio Creativo<br><span>Cuenca, Ecuador</span></p>
+            </div>
+            <div class="footer-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#packs">Packs</a>
+                <a href="#portafolio">Portafolio</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://instagram.com/gravityestudiocreativo" target="_blank" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://wa.me/593984990787" target="_blank" aria-label="WhatsApp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L0 24l6.335-1.507A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.5-5.065-1.373l-.363-.215-3.762.896.954-3.671-.236-.374A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                </a>
+                <a href="https://tiktok.com/@gravityestudiocreativo" target="_blank" aria-label="TikTok">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.93a8.2 8.2 0 004.79 1.53V7.02a4.85 4.85 0 01-1.02-.33z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gravity Estudio Creativo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ======= WHATSAPP CHAT FLOTANTE ======= -->
+    <div class="wap-widget" id="wapWidget">
+
+        <!-- Panel de chat (va primero en DOM = aparece arriba del botón) -->
+        <div class="wap-panel" id="wapPanel">
+            <div class="wap-header">
+                <div class="wap-avatar">
+                    <img src="assets/logo.jpg" alt="Gravity">
+                    <span class="wap-status"></span>
+                </div>
+                <div class="wap-header-info">
+                    <strong>Gravity Estudio</strong>
+                    <span>Respondemos en minutos ✦</span>
+                </div>
+                <button class="wap-close-panel" onclick="toggleWap()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="wap-messages">
+                <div class="wap-time">Hoy</div>
+                <div class="wap-msg wap-msg-in" id="wapMsg1">
+                    <p>¡Hola! 👋 Soy del equipo de <strong>Gravity Estudio Creativo</strong>.</p>
+                </div>
+                <div class="wap-msg wap-msg-in" id="wapMsg2">
+                    <p>¿En qué podemos ayudarte hoy? Cuéntanos sobre tu marca 🚀</p>
+                </div>
+            </div>
+            <div class="wap-quicklinks">
+                <button class="wap-quick" onclick="openWap('Hola! Me interesa el Pack Inicial')">Pack Inicial</button>
+                <button class="wap-quick" onclick="openWap('Hola! Me interesa el Pack Avanzado')">Pack Avanzado</button>
+                <button class="wap-quick" onclick="openWap('Hola! Quiero información sobre sus servicios')">Ver servicios</button>
+                <button class="wap-quick" onclick="openWap('Hola! Quiero una cotización personalizada')">Cotización</button>
+            </div>
+            <div class="wap-input-row">
+                <input type="text" id="wapInput" placeholder="Escribe un mensaje..." onkeydown="if(event.key==='Enter') sendWap()">
+                <button class="wap-send" onclick="sendWap()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón principal (siempre al fondo del flex) -->
+        <button class="wap-btn" id="wapBtn" onclick="toggleWap()" aria-label="Abrir chat WhatsApp">
+            <!-- Burbuja dentro del botón para que no afecte el layout -->
+            <div class="wap-bubble" id="wapBubble">1</div>
+            <span class="wap-icon-wa">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L0 24l6.335-1.507A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.5-5.065-1.373l-.363-.215-3.762.896.954-3.671-.236-.374A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            </span>
+            <span class="wap-icon-close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </span>
+        </button>
+
+    </div>
+
+    <script src="js/script.js"></script>
