@@ -1645,11 +1645,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .service-card.touch-active .service-icon { background: var(--yellow); color: var(--ink); }
 
 /* ── PORTFOLIO — tap muestra el overlay con título ── */
-.portfolio-item.touch-active .portfolio-inner { opacity: 1; }
+.portfolio-item.touch-active .portfolio-inner { opacity: 1 !important; }
 .portfolio-item.touch-active { transform: scale(1.02); }
 
 /* ── TEAM CARD — tap muestra las redes sociales ── */
-.team-card.touch-active .team-socials { opacity: 1; transform: translateY(0); }
+/* overflow:hidden en .team-photo corta los socials — lo movemos fuera */
+.team-photo { overflow: visible; }
+.team-card { overflow: hidden; } /* el clip lo hace el card, no la foto */
+.team-card.touch-active .team-socials { opacity: 1 !important; transform: translateY(0) !important; }
 .team-card.touch-active { box-shadow: var(--shadow-lg); border-color: var(--border-2); }
 
 /* ── Deshabilitar :hover pegado en touch ── */
@@ -1661,11 +1664,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .pack-card:hover     { transform: none; box-shadow: none; border-color: var(--border); }
     .pack-featured:hover { transform: scale(1.04); border-color: var(--ink); }
 
+    /* Portfolio y team: no resetear en hover — lo maneja touch-active */
     .portfolio-item:hover { transform: none; }
-    .portfolio-item:hover .portfolio-inner { opacity: 0; }
-
     .team-card:hover { transform: none; box-shadow: none; border-color: var(--border); }
-    .team-card:hover .team-socials { opacity: 0; transform: translateY(8px); }
 
     /* Feedback táctil en botones con :active */
     .btn-primary:hover  { transform: none; box-shadow: none; background: var(--ink); border-color: var(--ink); color: var(--white); }
