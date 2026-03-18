@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Favicon: ícono °G para pestaña del navegador -->
     <link rel="icon" href="assets/favicon.png" type="image/png">
     <link rel="shortcut icon" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -45,8 +44,8 @@
     </nav>
 
     <!-- ======= HERO — Video de Fondo ======= -->
+    <!-- FIX: padding-top en hero-content compensa la navbar fija -->
     <header class="hero" id="inicio">
-        <!-- Video de fondo en loop — reemplazar src por el video institucional definitivo -->
         <video
             class="hero-video-bg"
             autoplay
@@ -55,10 +54,7 @@
             playsinline
             poster="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1920&q=80"
         >
-            <!-- Source principal: video de producción (reemplazar cuando esté disponible) -->
             <source src="assets/hero-video.mp4" type="video/mp4">
-            <!-- Fallback: video de Pexels de producción audiovisual -->
-            <source src="https://www.pexels.com/download/video/3163534/" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
 
@@ -75,23 +71,21 @@
                     WhatsApp
                 </a>
             </div>
-            <!-- Datos de Valor -->
             <div class="hero-stat-text">
                 <span>+100 Marcas</span> &nbsp;—&nbsp; <span>8 Años</span> &nbsp;—&nbsp; <span>Clientes en todo el Ecuador</span>
             </div>
         </div>
     </header>
 
-    <!-- ======= CLIENTES — Marcas que han crecido con nosotros ======= -->
+    <!-- ======= CLIENTES ======= -->
     <section id="clientes" class="clients">
         <div class="section-header reveal">
             <span class="section-tag">Confianza Ganada</span>
             <h2>Marcas que han crecido<br>con nosotros</h2>
         </div>
-        <!-- Slider horizontal en loop — reemplazar texto por <img> cuando lleguen los logos definitivos -->
         <div class="clients-track-wrapper">
             <div class="clients-track">
-                <!-- Set 1 -->
+                <!-- Set 1 — 20 marcas -->
                 <div class="client-logo">Marca 01</div>
                 <div class="client-logo">Marca 02</div>
                 <div class="client-logo">Marca 03</div>
@@ -102,7 +96,17 @@
                 <div class="client-logo">Marca 08</div>
                 <div class="client-logo">Marca 09</div>
                 <div class="client-logo">Marca 10</div>
-                <!-- Set 2 — duplicado para loop infinito -->
+                <div class="client-logo">Marca 11</div>
+                <div class="client-logo">Marca 12</div>
+                <div class="client-logo">Marca 13</div>
+                <div class="client-logo">Marca 14</div>
+                <div class="client-logo">Marca 15</div>
+                <div class="client-logo">Marca 16</div>
+                <div class="client-logo">Marca 17</div>
+                <div class="client-logo">Marca 18</div>
+                <div class="client-logo">Marca 19</div>
+                <div class="client-logo">Marca 20</div>
+                <!-- Set 2 — copia exacta para loop infinito -->
                 <div class="client-logo">Marca 01</div>
                 <div class="client-logo">Marca 02</div>
                 <div class="client-logo">Marca 03</div>
@@ -113,124 +117,89 @@
                 <div class="client-logo">Marca 08</div>
                 <div class="client-logo">Marca 09</div>
                 <div class="client-logo">Marca 10</div>
+                <div class="client-logo">Marca 11</div>
+                <div class="client-logo">Marca 12</div>
+                <div class="client-logo">Marca 13</div>
+                <div class="client-logo">Marca 14</div>
+                <div class="client-logo">Marca 15</div>
+                <div class="client-logo">Marca 16</div>
+                <div class="client-logo">Marca 17</div>
+                <div class="client-logo">Marca 18</div>
+                <div class="client-logo">Marca 19</div>
+                <div class="client-logo">Marca 20</div>
             </div>
         </div>
     </section>
 
-    <!-- ======= SERVICIOS — 5 Categorías ======= -->
+    <!-- ======= SERVICIOS — Grid tipo portafolio + overlay ======= -->
     <section id="servicios" class="services">
         <div class="section-header reveal">
             <span class="section-tag">Lo que hacemos</span>
             <h2>Nuestros Servicios</h2>
         </div>
 
-        <!-- Fila 1 — 3 servicios -->
+        <!-- Grid 3 columnas igual que portfolio-grid -->
         <div class="services-grid">
 
-            <!-- 01 ANÁLISIS Y ESTRATEGIA -->
+            <!-- 01 -->
             <div class="service-item reveal reveal-delay-1">
-                <!-- Imagen placeholder — reemplazar por imagen suministrada por el cliente -->
-                <img
-                    class="service-item-bg"
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=75"
-                    alt="Análisis y Estrategia"
-                    loading="lazy"
-                >
+                <img class="service-item-bg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=75" alt="Análisis y Estrategia" loading="lazy">
                 <div class="service-item-overlay"></div>
-                <div class="service-item-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                </div>
                 <div class="service-item-content">
-                    <span class="service-num">01</span>
-                    <h3>Análisis y<br>Estrategia</h3>
-                    <p>Diagnóstico de marca, segmentación de mercado y roadmap digital para alcanzar tus objetivos de negocio.</p>
+                    <span class="service-cat">Estrategia</span>
+                    <h3>Análisis y Estrategia</h3>
+                    <p class="service-desc">Diagnóstico de marca, segmentación de mercado y roadmap digital para alcanzar tus objetivos con datos reales.</p>
                 </div>
             </div>
 
-            <!-- 02 PRODUCCIÓN AUDIOVISUAL -->
-            <div class="service-item reveal reveal-delay-2">
-                <img
-                    class="service-item-bg"
-                    src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=75"
-                    alt="Producción Audiovisual"
-                    loading="lazy"
-                >
+            <!-- 02 — large -->
+            <div class="service-item service-large reveal reveal-delay-2">
+                <img class="service-item-bg" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=75" alt="Producción Audiovisual" loading="lazy">
                 <div class="service-item-overlay"></div>
-                <div class="service-item-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
-                </div>
                 <div class="service-item-content">
-                    <span class="service-num">02</span>
-                    <h3>Producción<br>Audiovisual</h3>
-                    <p>Videos, reels y contenido audiovisual de alto impacto, desde el guion hasta la entrega final.</p>
+                    <span class="service-cat">Producción</span>
+                    <h3>Producción Audiovisual</h3>
+                    <p class="service-desc">Videos, reels y contenido audiovisual de alto impacto. Desde el guion y la producción en set, hasta la entrega final lista para publicar.</p>
                 </div>
             </div>
 
-            <!-- 03 DISEÑO Y EDICIÓN DE CONTENIDO -->
+            <!-- 03 -->
             <div class="service-item reveal reveal-delay-3">
-                <img
-                    class="service-item-bg"
-                    src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=75"
-                    alt="Diseño y Edición de Contenido"
-                    loading="lazy"
-                >
+                <img class="service-item-bg" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=75" alt="Diseño de Contenido" loading="lazy">
                 <div class="service-item-overlay"></div>
-                <div class="service-item-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
                 <div class="service-item-content">
-                    <span class="service-num">03</span>
-                    <h3>Diseño y Edición<br>de Contenido</h3>
-                    <p>Piezas gráficas, carruseles, stories y contenido visual que detiene el scroll y genera engagement.</p>
+                    <span class="service-cat">Diseño</span>
+                    <h3>Diseño y Edición de Contenido</h3>
+                    <p class="service-desc">Piezas gráficas, carruseles y stories que detienen el scroll, generan engagement y refuerzan tu identidad de marca.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Fila 2 — 2 servicios centrados -->
-        <div class="services-last-row">
-
-            <!-- 04 CAMPAÑAS DE PAUTA -->
+            <!-- 04 -->
             <div class="service-item reveal reveal-delay-2">
-                <img
-                    class="service-item-bg"
-                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=75"
-                    alt="Campañas de Pauta"
-                    loading="lazy"
-                >
+                <img class="service-item-bg" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=75" alt="Campañas de Pauta" loading="lazy">
                 <div class="service-item-overlay"></div>
-                <div class="service-item-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-                </div>
                 <div class="service-item-content">
-                    <span class="service-num">04</span>
-                    <h3>Campañas<br>de Pauta</h3>
-                    <p>Meta Ads, Google Ads y TikTok Ads — campañas optimizadas que maximizan tu inversión y convierten.</p>
+                    <span class="service-cat">Pauta</span>
+                    <h3>Campañas de Pauta</h3>
+                    <p class="service-desc">Meta Ads, Google Ads y TikTok Ads — campañas optimizadas que maximizan tu inversión y convierten audiencia en clientes.</p>
                 </div>
             </div>
 
-            <!-- 05 DISEÑO DE IMAGEN CORPORATIVA -->
+            <!-- 05 -->
             <div class="service-item reveal reveal-delay-3">
-                <img
-                    class="service-item-bg"
-                    src="https://images.unsplash.com/photo-1634942536790-d2f34e5c5f6d?w=800&q=75"
-                    alt="Diseño de Imagen Corporativa"
-                    loading="lazy"
-                >
+                <img class="service-item-bg" src="https://images.unsplash.com/photo-1634942536790-d2f34e5c5f6d?w=800&q=75" alt="Imagen Corporativa" loading="lazy">
                 <div class="service-item-overlay"></div>
-                <div class="service-item-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                </div>
                 <div class="service-item-content">
-                    <span class="service-num">05</span>
-                    <h3>Imagen<br>Corporativa</h3>
-                    <p>Logos, paletas, tipografías y guías de marca que dan identidad única y memorabilidad a tu negocio.</p>
+                    <span class="service-cat">Branding</span>
+                    <h3>Imagen Corporativa</h3>
+                    <p class="service-desc">Logos, paletas, tipografías y guías de marca que dan identidad única, coherencia visual y memorabilidad a tu negocio.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- ======= PACKS DE SOCIAL MEDIA ======= -->
+    <!-- ======= PACKS ======= -->
     <section id="packs" class="packs">
         <div class="section-header reveal">
             <span class="section-tag">Elige tu plan</span>
@@ -239,7 +208,6 @@
         </div>
         <div class="packs-grid">
 
-            <!-- PACK INICIAL -->
             <div class="pack-card reveal reveal-delay-1">
                 <div class="pack-header">
                     <span class="pack-label">Inicial</span>
@@ -259,7 +227,6 @@
                 <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Inicial" target="_blank" rel="noopener" class="pack-cta">Quiero este pack</a>
             </div>
 
-            <!-- PACK INTERMEDIO -->
             <div class="pack-card reveal reveal-delay-2">
                 <div class="pack-header">
                     <span class="pack-label">Intermedio</span>
@@ -279,7 +246,6 @@
                 <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Intermedio" target="_blank" rel="noopener" class="pack-cta">Quiero este pack</a>
             </div>
 
-            <!-- PACK AVANZADO — POPULAR -->
             <div class="pack-card pack-featured reveal reveal-delay-3">
                 <div class="pack-badge">Más popular</div>
                 <div class="pack-header">
@@ -300,7 +266,6 @@
                 <a href="https://wa.me/593984990787?text=Hola!%20Me%20interesa%20el%20Pack%20Avanzado" target="_blank" rel="noopener" class="pack-cta">Quiero este pack</a>
             </div>
 
-            <!-- PACK PRO -->
             <div class="pack-card reveal reveal-delay-4">
                 <div class="pack-header">
                     <span class="pack-label">Pro</span>
@@ -324,15 +289,9 @@
         <p class="packs-note">¿No sabes cuál elegir? <a href="https://wa.me/593984990787?text=Hola!%20Necesito%20asesor%C3%ADa%20para%20elegir%20un%20pack" target="_blank" rel="noopener">Escríbenos y te asesoramos sin costo ✦</a></p>
     </section>
 
-    <!-- ======= EQUIPO — Foto Grupal ======= -->
+    <!-- ======= EQUIPO ======= -->
     <section id="equipo" class="team">
-        <!-- Foto grupal placeholder — reemplazar por la foto real del equipo -->
-        <img
-            class="team-photo-group"
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
-            alt="Equipo Gravity Estudio Creativo"
-            loading="lazy"
-        >
+        <img class="team-photo-group" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80" alt="Equipo Gravity Estudio Creativo" loading="lazy">
         <div class="team-overlay"></div>
         <div class="team-content reveal">
             <span class="section-tag">Las personas detrás</span>
@@ -343,22 +302,20 @@
         </div>
     </section>
 
-    <!-- ======= FORMULARIO + REDES SOCIALES ======= -->
+    <!-- ======= CONTACTO ======= -->
     <section id="contacto" class="contact">
         <div class="contact-inner">
             <div class="contact-text reveal">
                 <span class="section-tag">Empecemos</span>
                 <h2>¿Listo para el lanzamiento?</h2>
                 <p>Cuéntanos sobre tu marca y diseñamos juntos la estrategia perfecta para llevarla al siguiente nivel.</p>
-
-                <!-- Redes Sociales -->
                 <div class="social-links">
                     <a href="https://facebook.com/gravityestudiocreativo" target="_blank" rel="noopener" class="social-link facebook">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         @gravityestudiocreativo
                     </a>
                     <a href="https://instagram.com/gravityestudiocreativo" target="_blank" rel="noopener" class="social-link instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                         @gravityestudiocreativo
                     </a>
                     <a href="https://tiktok.com/@gravityestudiocreativo" target="_blank" rel="noopener" class="social-link tiktok">
@@ -374,11 +331,11 @@
 
             <form class="contact-form reveal reveal-delay-2" onsubmit="handleForm(event)" id="contactForm">
                 <div class="form-row">
-                    <input type="text" placeholder="Tu nombre" required id="formName">
-                    <input type="email" placeholder="Tu email" required id="formEmail">
+                    <input type="text" placeholder="Tu nombre" required>
+                    <input type="email" placeholder="Tu email" required>
                 </div>
-                <input type="text" placeholder="Nombre de tu empresa / marca" id="formBrand">
-                <select id="formPack">
+                <input type="text" placeholder="Nombre de tu empresa / marca">
+                <select>
                     <option value="" disabled selected>¿Qué pack te interesa?</option>
                     <option>Pack Inicial</option>
                     <option>Pack Intermedio</option>
@@ -386,7 +343,7 @@
                     <option>Pack Pro</option>
                     <option>Tengo dudas, necesito asesoría</option>
                 </select>
-                <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="4" id="formMessage"></textarea>
+                <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="4"></textarea>
                 <button type="submit" class="btn-primary">Enviar mensaje ✦</button>
                 <div class="form-success" id="formSuccess">
                     ¡Excelente! Tu mensaje fue enviado. 🚀 Nos pondremos en contacto contigo muy pronto.
@@ -395,7 +352,7 @@
         </div>
     </section>
 
-    <!-- ======= FOOTER — Fondo Amarillo ======= -->
+    <!-- ======= FOOTER ======= -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
@@ -434,8 +391,11 @@
     <div class="wap-widget" id="wapWidget">
         <div class="wap-panel" id="wapPanel">
             <div class="wap-header">
-                <div class="wap-avatar">
-                    <img src="assets/logo.png" alt="Gravity">
+                <div class="wap-avatar-wrap">
+                    <div class="wap-avatar">
+                        <div class="wap-avatar-placeholder">G</div>
+                        <img src="assets/favicon.png" alt="Gravity" onerror="this.style.display='none'">
+                    </div>
                     <span class="wap-status"></span>
                 </div>
                 <div class="wap-header-info">
@@ -448,10 +408,10 @@
             </div>
             <div class="wap-messages">
                 <div class="wap-time">Hoy</div>
-                <div class="wap-msg wap-msg-in" id="wapMsg1">
+                <div class="wap-msg wap-msg-in">
                     <p>¡Hola! 👋 Soy del equipo de <strong>Gravity Estudio Creativo</strong>.</p>
                 </div>
-                <div class="wap-msg wap-msg-in" id="wapMsg2">
+                <div class="wap-msg wap-msg-in">
                     <p>¿En qué podemos ayudarte hoy? Cuéntanos sobre tu marca 🚀</p>
                 </div>
             </div>
