@@ -1,279 +1,161 @@
 /* ============================================
-   GRAVITY ESTUDIO CREATIVO — script.js
-   Mobile-first · Touch optimizado
+   GRAVITY ESTUDIO CREATIVO — script.js v5.0
    ============================================ */
 
-// ── DETECCIÓN DE DISPOSITIVO ───────────────
-const isTouchDevice = () =>
-    window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-// ── PRELOADER ──────────────────────────────
-window.addEventListener('load', removePreloader);
-const maxLoaderTime = setTimeout(removePreloader, 4000);
-let preloaderRemoved = false;
-
-function removePreloader() {
-    if (preloaderRemoved) return;
-    preloaderRemoved = true;
-    clearTimeout(maxLoaderTime);
-    const loader = document.getElementById('loader');
-    if (!loader) return;
+/* ── PRELOADER ── */
+window.addEventListener('load', () => {
     setTimeout(() => {
-        loader.classList.add('loader-hidden');
-        document.body.classList.remove('loading');
-        setTimeout(() => { loader.style.display = 'none'; }, 600);
-    }, 1700);
-}
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.classList.add('loader-hidden');
+            document.body.classList.remove('loading');
+        }
+    }, 1800);
+});
 
-// ── NAVBAR DINÁMICA ────────────────────────
-let lastScroll = 0, rafPending = false;
+/* ── NAVBAR — scroll behavior ── */
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-    lastScroll = window.scrollY;
-    if (!rafPending) {
-        rafPending = true;
-        requestAnimationFrame(updateNavbar);
+    const current = window.scrollY;
+    if (navbar) {
+        if (current > 60) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     }
+    lastScroll = current;
 }, { passive: true });
 
-function updateNavbar() {
-    rafPending = false;
-    const nav = document.querySelector('.navbar');
-    if (!nav) return;
-    if (lastScroll > 60) {
-        nav.style.padding    = '0.7rem 6%';
-        nav.style.background = 'rgba(250, 250, 248, 0.97)';
-        nav.style.boxShadow  = '0 4px 24px rgba(10,10,10,0.08)';
-    } else {
-        nav.style.padding    = '1rem 6%';
-        nav.style.background = 'rgba(250, 250, 248, 0.9)';
-        nav.style.boxShadow  = 'none';
-    }
-}
-
-// ── MENÚ MÓVIL ─────────────────────────────
+/* ── MENÚ MÓVIL ── */
 function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    const ham   = document.querySelector('.hamburger');
-    const isOpen = links.classList.toggle('open');
-    ham.classList.toggle('active', isOpen);
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    if (!navLinks || !hamburger) return;
+
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-function closeMenu() {
-    const links = document.querySelector('.nav-links');
-    const ham   = document.querySelector('.hamburger');
-    if (!links) return;
-    links.classList.remove('open');
-    ham.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
-});
-
-// ── SMOOTH SCROLL ──────────────────────────
-const supportsSmooth = 'scrollBehavior' in document.documentElement.style;
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        closeMenu();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (!target) return;
-        target.scrollIntoView({
-            behavior: supportsSmooth ? 'smooth' : 'auto'
-        });
+// Cerrar menú al hacer clic en un link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navLinks = document.getElementById('navLinks');
+        const hamburger = document.getElementById('hamburger');
+        if (navLinks) navLinks.classList.remove('open');
+        if (hamburger) hamburger.classList.remove('active');
+        document.body.style.overflow = '';
     });
 });
 
-// ── SCROLL REVEAL ──────────────────────────
-const revealElements = document.querySelectorAll(
-    '.service-card, .pack-card, .portfolio-item, .hero-card, .team-card'
-);
+/* ── SCROLL REVEAL ── */
+const revealElements = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const delay = isTouchDevice() ? i * 30 : i * 60;
-            setTimeout(() => {
-                entry.target.classList.remove('will-reveal');
-                entry.target.classList.add('revealed');
-            }, delay);
+            entry.target.classList.add('revealed');
+            // Dejar de observar una vez revelado
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-revealElements.forEach(el => {
-    el.classList.add('will-reveal');
-    revealObserver.observe(el);
+}, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
 });
 
-// ── TOUCH INTERACTIONS ─────────────────────
-// Reemplaza el :hover en dispositivos táctiles con touchstart/touchend
+revealElements.forEach(el => revealObserver.observe(el));
 
-// 1. SERVICE CARDS — línea amarilla + ícono amarillo al tocar
-document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('touchstart', function () {
-        // Quitar activo de otras cards
-        document.querySelectorAll('.service-card').forEach(c => c.classList.remove('touch-active'));
-        this.classList.add('touch-active');
-    }, { passive: true });
-});
+/* ── FORMULARIO DE CONTACTO ── */
+function handleForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
 
-// Quitar al tocar en otro lado
-document.addEventListener('touchstart', function (e) {
-    if (!e.target.closest('.service-card')) {
-        document.querySelectorAll('.service-card.touch-active')
-            .forEach(c => c.classList.remove('touch-active'));
+    if (!form || !success) return;
+
+    // Simulación de envío — integrar con backend/FormSubmit/Formspree cuando esté listo
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
     }
-}, { passive: true });
 
-// 2. PORTFOLIO ITEMS — mostrar overlay con nombre del proyecto al tocar
-document.querySelectorAll('.portfolio-item').forEach(item => {
-    item.addEventListener('touchstart', function () {
-        const isActive = this.classList.contains('touch-active');
-        // Cerrar todos
-        document.querySelectorAll('.portfolio-item.touch-active')
-            .forEach(el => el.classList.remove('touch-active'));
-        // Toggle del tocado
-        if (!isActive) this.classList.add('touch-active');
-    }, { passive: true });
-});
+    setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        // Reset para reutilización
+        form.reset();
+    }, 1200);
+}
 
-// Cerrar portfolio overlay al tocar fuera
-document.addEventListener('touchstart', function (e) {
-    if (!e.target.closest('.portfolio-item')) {
-        document.querySelectorAll('.portfolio-item.touch-active')
-            .forEach(el => el.classList.remove('touch-active'));
-    }
-}, { passive: true });
-
-// 3. TEAM CARDS — mostrar redes sociales al tocar
-document.querySelectorAll('.team-card').forEach(card => {
-    card.addEventListener('touchstart', function () {
-        const isActive = this.classList.contains('touch-active');
-        document.querySelectorAll('.team-card.touch-active')
-            .forEach(c => c.classList.remove('touch-active'));
-        if (!isActive) this.classList.add('touch-active');
-    }, { passive: true });
-});
-
-document.addEventListener('touchstart', function (e) {
-    if (!e.target.closest('.team-card')) {
-        document.querySelectorAll('.team-card.touch-active')
-            .forEach(c => c.classList.remove('touch-active'));
-    }
-}, { passive: true });
-
-// ── FILTROS DE PORTAFOLIO ──────────────────
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        document.querySelectorAll('.filter-btn')
-            .forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        const filter = this.dataset.filter;
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            const show = filter === 'all' || item.dataset.cat === filter;
-            item.style.opacity       = show ? '1'        : '0.25';
-            item.style.transform     = show ? 'scale(1)' : 'scale(0.97)';
-            item.style.pointerEvents = show ? 'auto'     : 'none';
-        });
-    });
-});
-
-// ── WHATSAPP CHAT FLOTANTE ─────────────────
-const WA_NUMBER = '593984990787';
-let wapTimeout;
+/* ── WHATSAPP WIDGET ── */
+let wapOpen = false;
 
 function toggleWap() {
-    const widget = document.getElementById('wapWidget');
+    const panel = document.getElementById('wapPanel');
+    const btn = document.getElementById('wapBtn');
     const bubble = document.getElementById('wapBubble');
-    if (!widget) return;
-    const isOpen = widget.classList.toggle('open');
 
-    if (isOpen) {
-        bubble.classList.add('hidden');
-        clearTimeout(wapTimeout);
-        wapTimeout = setTimeout(() => {
-            if (widget.classList.contains('open')) animateWapMsgs();
-        }, 200);
-        if (isTouchDevice()) {
-            setTimeout(() => {
-                document.addEventListener('touchstart', closeWapOutside,
-                    { once: true, passive: true });
-            }, 300);
-        }
-    } else {
-        clearTimeout(wapTimeout);
+    if (!panel || !btn) return;
+
+    wapOpen = !wapOpen;
+
+    panel.classList.toggle('open', wapOpen);
+    btn.classList.toggle('open', wapOpen);
+
+    if (bubble) {
+        bubble.style.display = wapOpen ? 'none' : 'flex';
     }
 }
 
-function closeWapOutside(e) {
-    const widget = document.getElementById('wapWidget');
-    if (widget && !widget.contains(e.target)) {
-        widget.classList.remove('open');
-    }
-}
-
-function animateWapMsgs() {
-    document.querySelectorAll('.wap-msg').forEach((m, i) => {
-        m.style.animation = 'none';
-        m.offsetHeight;
-        m.style.animation =
-            `msgSlide 0.4s cubic-bezier(0.34,1.56,0.64,1) ${i * 0.15}s both`;
-    });
-}
-
-function openWap(msg) {
-    window.open(
-        `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
-        '_blank'
-    );
+function openWap(message) {
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/593984990787?text=${encoded}`, '_blank');
 }
 
 function sendWap() {
     const input = document.getElementById('wapInput');
     if (!input) return;
-    const text = input.value.trim();
-    if (!text) return;
-    openWap(text);
+    const msg = input.value.trim();
+    if (!msg) return;
+    openWap(msg);
     input.value = '';
 }
 
-// Burbuja de notificación a los 4s
-setTimeout(() => {
-    const widget = document.getElementById('wapWidget');
-    const bubble = document.getElementById('wapBubble');
-    if (!widget || widget.classList.contains('open')) return;
-    bubble.classList.remove('hidden');
-    bubble.style.animation = 'none';
-    bubble.offsetHeight;
-    bubble.style.animation =
-        'bubblePop 0.5s cubic-bezier(0.34,1.56,0.64,1) both';
-}, 4000);
+/* ── SMOOTH ANCHOR SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = navbar ? navbar.offsetHeight + 16 : 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    });
+});
 
-// ── FORMULARIO ─────────────────────────────
-function handleForm(e) {
-    e.preventDefault();
-    const btn      = e.target.querySelector('button[type="submit"]');
-    const original = btn.textContent;
-    btn.textContent = 'Enviando...';
-    btn.disabled    = true;
+/* ── VIDEO HERO FALLBACK ── */
+const heroVideo = document.querySelector('.hero-video-bg');
+if (heroVideo) {
+    heroVideo.addEventListener('error', () => {
+        // Si el video falla, el poster (imagen de fondo) se mostrará automáticamente
+        heroVideo.style.display = 'none';
+    });
 
-    setTimeout(() => {
-        btn.textContent      = '¡Mensaje enviado! ✦';
-        btn.style.background = '#0a0a0a';
-        btn.style.color      = '#ffffff';
-        setTimeout(() => {
-            btn.textContent      = original;
-            btn.style.background = '';
-            btn.style.color      = '';
-            btn.disabled         = false;
-            e.target.reset();
-        }, 3000);
-    }, 1400);
+    // Pausar video cuando no es visible (rendimiento)
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                heroVideo.play().catch(() => {});
+            } else {
+                heroVideo.pause();
+            }
+        });
+    }, { threshold: 0.1 });
+
+    videoObserver.observe(heroVideo);
 }
