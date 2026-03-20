@@ -79,22 +79,30 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ── TOUCH: SERVICIOS — overlay al tap ── */
+/* ── TOUCH: SERVICIOS ── */
+// En móvil el texto es siempre visible (CSS lo maneja)
+// En tablet/touch el tap activa/desactiva el estado expandido
 document.querySelectorAll('.service-item').forEach(item => {
-    item.addEventListener('touchstart', function () {
+    item.addEventListener('click', function () {
+        // Si estamos en móvil pequeño el CSS ya muestra el texto, no hacer nada
+        if (window.innerWidth <= 640) return;
+
         const isActive = this.classList.contains('touch-active');
+        // Cerrar todos
         document.querySelectorAll('.service-item.touch-active')
             .forEach(el => el.classList.remove('touch-active'));
+        // Abrir el tocado si no estaba activo
         if (!isActive) this.classList.add('touch-active');
-    }, { passive: true });
+    });
 });
 
-document.addEventListener('touchstart', e => {
+// Cerrar al tocar fuera
+document.addEventListener('click', e => {
     if (!e.target.closest('.service-item')) {
         document.querySelectorAll('.service-item.touch-active')
             .forEach(el => el.classList.remove('touch-active'));
     }
-}, { passive: true });
+});
 
 /* ── FORMULARIO ── */
 function handleForm(e) {
