@@ -336,24 +336,25 @@
 
             <form class="contact-form reveal reveal-delay-2" onsubmit="handleForm(event)" id="contactForm">
                 <div class="form-row">
-                    <input type="text" placeholder="Tu nombre" required>
-                    <input type="email" placeholder="Tu email" required>
+                    <input type="text" id="formName" placeholder="Tu nombre" required>
+                    <input type="email" id="formEmail" placeholder="Tu email" required>
                 </div>
-                <input type="text" placeholder="Nombre de tu empresa / marca">
-                <select>
+                <input type="text" id="formBrand" placeholder="Nombre de tu empresa / marca">
+                <select id="formPack">
                     <option value="" disabled selected>¿Qué pack te interesa?</option>
-                    <option>Pack Inicial</option>
-                    <option>Pack Intermedio</option>
-                    <option>Pack Avanzado</option>
-                    <option>Pack Pro</option>
-                    <option>Tengo dudas, necesito asesoría</option>
+                    <option value="Pack Inicial">Pack Inicial</option>
+                    <option value="Pack Intermedio">Pack Intermedio</option>
+                    <option value="Pack Avanzado">Pack Avanzado</option>
+                    <option value="Pack Pro">Pack Pro</option>
+                    <option value="Asesoría">Tengo dudas, necesito asesoría</option>
                 </select>
-                <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="4"></textarea>
+                <textarea id="formMessage" placeholder="Cuéntanos sobre tu proyecto..." rows="4"></textarea>
                 <button type="submit" class="btn-primary">Enviar mensaje ✦</button>
-                <div class="form-success" id="formSuccess">
-                    ¡Excelente! Tu mensaje fue enviado. 🚀 Nos pondremos en contacto contigo muy pronto.
-                </div>
             </form>
+            <div class="form-success" id="formSuccess" style="display: none; text-align: center; margin-top: 2rem; background: rgba(255,195,0,0.1); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 8px;">
+                <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading);">¡Mensaje Enviado! 🚀</h3>
+                <p>Nos pondremos en contacto contigo muy pronto.</p>
+            </div>
         </div>
     </section>
 

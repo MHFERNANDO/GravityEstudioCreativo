@@ -111,13 +111,41 @@ function handleForm(e) {
     const success = document.getElementById('formSuccess');
     const btn     = form ? form.querySelector('button[type="submit"]') : null;
 
-    if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Abriendo Gmail...'; }
+
+    // Capturar datos del formulario
+    const name    = document.getElementById('formName')?.value || 'No especificado';
+    const email   = document.getElementById('formEmail')?.value || 'No especificado';
+    const brand   = document.getElementById('formBrand')?.value || 'No especificado';
+    const pack    = document.getElementById('formPack')?.value || 'No especificado';
+    const message = document.getElementById('formMessage')?.value || 'Sin mensaje';
+
+    // Construir los parámetros para el correo
+    const targetEmail = "pabloxaseg@gmail.com";
+    const subject = encodeURIComponent(`Nuevo contacto de ${name} - Gravity Estudio`);
+    let bodyText = `Hola equipo de Gravity! Quiero empezar un proyecto. 🚀\n\n`;
+    bodyText += `*Nombre:* ${name}\n`;
+    bodyText += `*Email de contacto:* ${email}\n`;
+    if (brand && brand !== 'No especificado') bodyText += `*Marca/Empresa:* ${brand}\n`;
+    if (pack && pack !== 'No especificado') bodyText += `*Pack de Interés:* ${pack}\n`;
+    if (message && message !== 'Sin mensaje') bodyText += `\n*Detalles del proyecto:*\n${message}\n`;
+    
+    const bodyEncoded = encodeURIComponent(bodyText);
+
+    // URL para componer correo directamente en Gmail Web / App
+    const webGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${bodyEncoded}`;
 
     setTimeout(() => {
+        // Abrir ventana de Gmail
+        window.open(webGmailUrl, '_blank');
+
+        // Mostrar mensaje de éxito y resetear formulario
         if (form)    form.style.display    = 'none';
         if (success) success.style.display = 'block';
         if (form)    form.reset();
-    }, 1200);
+
+        if (btn) { btn.disabled = false; btn.textContent = 'Enviar mensaje ✦'; }
+    }, 600);
 }
 
 /* ── WHATSAPP WIDGET ── */
