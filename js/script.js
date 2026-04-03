@@ -111,39 +111,28 @@ function handleForm(e) {
     const success = document.getElementById('formSuccess');
     const btn     = form ? form.querySelector('button[type="submit"]') : null;
 
-    if (btn) { btn.disabled = true; btn.textContent = 'Abriendo Gmail...'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Abriendo correo...'; }
 
-    // Capturar datos del formulario
-    const name    = document.getElementById('formName')?.value || 'No especificado';
-    const email   = document.getElementById('formEmail')?.value || 'No especificado';
-    const brand   = document.getElementById('formBrand')?.value || 'No especificado';
-    const pack    = document.getElementById('formPack')?.value || 'No especificado';
-    const message = document.getElementById('formMessage')?.value || 'Sin mensaje';
+    const name    = document.getElementById('formName')?.value    || '';
+    const email   = document.getElementById('formEmail')?.value   || '';
+    const brand   = document.getElementById('formBrand')?.value   || '';
+    const pack    = document.getElementById('formPack')?.value    || '';
+    const message = document.getElementById('formMessage')?.value || '';
 
-    // Construir los parámetros para el correo
-    const targetEmail = "pabloxaseg@gmail.com";
-    const subject = encodeURIComponent(`Nuevo contacto de ${name} - Gravity Estudio`);
-    let bodyText = `Hola equipo de Gravity! Quiero empezar un proyecto. 🚀\n\n`;
-    bodyText += `*Nombre:* ${name}\n`;
-    bodyText += `*Email de contacto:* ${email}\n`;
-    if (brand && brand !== 'No especificado') bodyText += `*Marca/Empresa:* ${brand}\n`;
-    if (pack && pack !== 'No especificado') bodyText += `*Pack de Interés:* ${pack}\n`;
-    if (message && message !== 'Sin mensaje') bodyText += `\n*Detalles del proyecto:*\n${message}\n`;
-    
-    const bodyEncoded = encodeURIComponent(bodyText);
+    const targetEmail = 'info@gravityestudiocreativo.com';
+    const subject = encodeURIComponent(`Nuevo contacto web — ${name}`);
+    let body = `Hola equipo Gravity!\n\nNombre: ${name}\nEmail: ${email}`;
+    if (brand)   body += `\nMarca: ${brand}`;
+    if (pack)    body += `\nPack de interés: ${pack}`;
+    if (message) body += `\n\nMensaje:\n${message}`;
 
-    // URL para componer correo directamente en Gmail Web / App
-    const webGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${bodyEncoded}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${encodeURIComponent(body)}`;
 
     setTimeout(() => {
-        // Abrir ventana de Gmail
-        window.open(webGmailUrl, '_blank');
-
-        // Mostrar mensaje de éxito y resetear formulario
+        window.open(gmailUrl, '_blank');
         if (form)    form.style.display    = 'none';
         if (success) success.style.display = 'block';
         if (form)    form.reset();
-
         if (btn) { btn.disabled = false; btn.textContent = 'Enviar mensaje ✦'; }
     }, 600);
 }

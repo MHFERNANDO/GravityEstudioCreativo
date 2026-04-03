@@ -536,6 +536,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pack-featured .pack-cta:hover { background: var(--white); color: var(--blue); border-color: var(--white); }
 
 .packs-note { text-align: center; margin-top: 2.5rem; font-size: 0.85rem; color: var(--blue); opacity: 0.8; }
+.packs-note2 { text-align: center; margin-top: 0.6rem; font-size: 0.85rem; }
+.packs-note2 a { color: var(--blue); font-weight: 700; border-bottom: 1.5px solid var(--yellow); padding-bottom: 1px; }
+.packs-note2 a:hover { color: var(--yellow-dark); }
 .packs-note a { color: var(--blue); font-weight: 700; border-bottom: 1.5px solid var(--yellow); padding-bottom: 1px; }
 .packs-note a:hover { color: var(--yellow-dark); }
 
@@ -790,8 +793,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .wap-avatar img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: contain; /* Contain evita que se recorten los bordes del logo */
-    padding: 10px; /* Más padding para que el recuadro redondo no corte las esquinas */
+    object-fit: contain;
+    padding: 4px;
     background: var(--yellow);
     z-index: 1;
 }
