@@ -207,12 +207,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(1,53,101,0.75) 0%,
-        rgba(1,53,101,0.65) 60%,
-        rgba(1,26,50,0.85)  100%
-    );
+    
     z-index: 1;
 }
 
@@ -242,7 +237,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     font-family: var(--font-display);
     font-size: clamp(3rem, 7vw, 7.5rem);
     font-weight: 800; line-height: 0.9; letter-spacing: -1px;
-    text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem;
+    text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem;line-height: 1
 }
 .hero-content h1 em { font-style: italic; color: var(--yellow); }
 
@@ -339,10 +334,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
     letter-spacing: 1.5px; color: var(--blue); text-transform: uppercase;
-    filter: grayscale(1) opacity(0.4);
+    /*filter: grayscale(1) opacity(0.4);*/
     transition: filter 0.3s var(--ease), border-color 0.3s, transform 0.3s var(--spring), box-shadow 0.3s;
+    
 }
 .client-logo:hover { filter: grayscale(0) opacity(1); border-color: var(--yellow); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
 .client-logo img { max-height: 44px; max-width: 120px; object-fit: contain; filter: inherit; }
 
 /* ============================================
@@ -562,58 +559,82 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================
    EQUIPO — Texto arriba, foto abajo completa
    ============================================ */
+/* Corrección de la sección Team y error de caracteres */
 .team {
     background: var(--off-white);
     width: 100%;
+    padding-bottom: 60px;
 }
 
 .team-top {
     text-align: center;
-    padding: 60px 6% 32px;
-    background: var(--off-white);
-}
-
-.team-label {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--blue);
-    opacity: 0.45;
-    margin-bottom: 1rem;
+    padding: clamp(40px, 6vw, 80px) 6% clamp(20px, 4vw, 40px);
 }
 
 .team-top h2 {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.8vw, 3rem);
+    font-size: clamp(1.6rem, 4vw, 3.5rem);
     font-weight: 800;
     text-transform: uppercase;
-    line-height: 1.05;
-    letter-spacing: -0.5px;
     color: var(--blue);
-    margin: 0;
 }
-
-.team-top h2 span { color: var(--yellow); }
 
 .team-bottom {
     width: 100%;
-    display: block;
+    max-width: 1600px;
+    margin: 0 auto;
     line-height: 0;
-    background: var(--off-white);
-    max-height: 480px;
-    overflow: hidden;
 }
 
 .team-photo-group {
     width: 100%;
-    height: 480px;
+    height: auto; /* Mantiene la proporción 1921x901 */
     display: block;
-    object-fit: cover;
-    object-position: center top;
+    object-fit: contain;
 }
 
+/* Ajustes de Negritas en Packs */
+.pack-card p strong {
+    font-weight: 800;
+    color: var(--blue);
+}
+
+/* Fix para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary:active, .btn-secondary:active { 
+        transform: scale(0.96); 
+    }
+    .wap-btn:active { 
+        transform: scale(0.92); 
+        background: var(--yellow); 
+    }
+}
+.team-bottom {
+    width: 100%;
+    /* Limitamos al ancho total de la imagen para evitar pixelación */
+    max-width: 1921px; 
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--off-white);
+}
+
+.team-photo-group {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* "contain" asegura que los 1600px del área segura 
+       siempre estén visibles en el viewport */
+    object-fit: contain; 
+    /* Centramos para que el aire de los costados (fuera de los 1600px) 
+       se distribuya equitativamente */
+    object-position: center; 
+}
+
+/* Ajuste fino para tablets donde el aspect ratio cambia */
+@media (max-width: 1024px) {
+    .team-bottom {
+        padding: 0 2%; /* Un pequeño respiro visual */
+    }}
 
 /* ============================================
    CONTACTO
