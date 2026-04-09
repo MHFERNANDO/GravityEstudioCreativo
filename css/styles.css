@@ -577,6 +577,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     font-weight: 800;
     text-transform: uppercase;
     color: var(--blue);
+    line-height: 1;
 }
 
 .team-bottom {
@@ -941,8 +942,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 48px 5% 24px; }
     .team-top h2 { font-size: clamp(1.3rem, 4.5vw, 2.2rem); }
-    .team-bottom { max-height: 360px; }
-    .team-photo-group { height: 360px; }
+    .team-bottom {
+        padding: 0 4%; /* Un respiro visual */
+    }
+    .team-photo-group {
+        /* EFECTO ZOOM TABLET:
+           Para tablets verticales, la imagen ya empieza a encogerse. 
+           Usamos transform-origin y transform para acercar el centro. */
+        width: 100%;
+        height: auto;
+        
+        /* Centramos la transformación y hacemos un zoom suave */
+        transform-origin: center center;
+        transform: scale(1.1); /* Zoom de 10% */
+    }
 
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.5rem 5%; }
     .footer-bottom { flex-direction: column; text-align: center; padding: 1rem 5%; gap: 0.3rem; }
@@ -983,8 +996,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 40px 4% 20px; }
     .team-top h2 { font-size: clamp(1.2rem, 5.5vw, 1.8rem); }
-    .team-bottom { max-height: 280px; }
-    .team-photo-group { height: 280px; }
+    .team-bottom { 
+        width: 100%;
+        max-width: none; /* Quitamos el max-width de desktop */
+        overflow: hidden; /* Oculta los laterales decorativos */
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .team-photo-group { 
+        
+        width: 120vw; /* Hacemos la imagen un 20% más ancha que la pantalla */
+        height: auto !important; /* Mantiene la proporción */
+        
+        object-fit: cover;
+        object-position: 50% center; /* Centra horizontalmente, enfoca el área segura */
+
+    }
 
     .contact { padding: 70px 4%; }
     .contact-inner { gap: 2.5rem; }
@@ -1022,11 +1051,55 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 32px 4% 16px; }
     .team-top h2 { font-size: clamp(1rem, 5.5vw, 1.5rem); }
-    .team-bottom { max-height: 220px; }
-    .team-photo-group { height: 220px; }
+    .team-bottom {
+        width: 100%;
+        max-width: 1921px; 
+        margin: 0 auto;
+        line-height: 0;
+        overflow: visible; /* Cambiado de hidden a visible para evitar recortes */
+        background: var(--off-white);
+    }
+
+    .team-photo-group {
+        /* EFECTO ZOOM MÓVIL PEQUEÑO:
+           En pantallas muy estrechas, el zoom debe ser mayor. */
+        width: 135vw; /* Aún más ancha para ver el centro más grande */
+        height: auto !important;
+        object-fit: cover;
+        object-position: 50% center;
 
     .footer-logo { height: 40px; }
 
     .wap-panel { width: calc(100vw - 24px); bottom: calc(100% + 10px); }
     .wap-btn { width: 50px; height: 50px; }
+}
+
+/* ============================================
+   SECCIÓN EQUIPO — GRAVITY v5.1 Final
+   ============================================ */
+
+.team {
+    background: var(--off-white);
+    width: 100%;
+    padding-bottom: clamp(40px, 6vw, 80px); /* Padding responsivo al final */
+}
+
+/* Preparamos el contenedor para el efecto de zoom */
+.team-bottom {
+    width: 100%;
+    /* Limitamos al ancho total de la imagen para desktop */
+    max-width: 1921px; 
+    margin: 0 auto;
+    overflow: hidden; /* IMPORTANTE: Oculta los laterales en móvil */
+    background: var(--off-white);
+    line-height: 0;
+}
+
+.team-photo-group {
+    width: 100%;
+    height: auto; /* Mantiene proporción */
+    display: block;
+    object-fit: contain; /* Comportamiento por defecto para desktop */
+    object-position: center;
+    transition: transform 0.3s ease; /* Opcional: suave transición al cambiar de tamaño */
 }
