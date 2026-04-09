@@ -998,21 +998,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .team-top h2 { font-size: clamp(1.2rem, 5.5vw, 1.8rem); }
     .team-bottom { 
         width: 100%;
-        max-width: none; /* Quitamos el max-width de desktop */
-        overflow: hidden; /* Oculta los laterales decorativos */
+        max-height: none !important;
+        /* Forzamos una nueva proporción para que se vea más alta */
+        /* 4/3 es un formato más cuadrado/alargado que el 16:9 original */
+        aspect-ratio: 4 / 3; 
+        overflow: hidden;
         padding: 0;
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .team-photo-group { 
+        width: 100% !important;
+        height: 100% !important; /* Ahora llena el 4/3 de arriba */
         
-        width: 120vw; /* Hacemos la imagen un 20% más ancha que la pantalla */
-        height: auto !important; /* Mantiene la proporción */
+        /* 1. Mantenemos las proporciones reales para que no se deformen las caras */
+        /* 2. Hacemos que la imagen se estire para llenar el nuevo alto (Zoom automático) */
+        object-fit: cover; 
         
-        object-fit: cover;
-        object-position: 50% center; /* Centra horizontalmente, enfoca el área segura */
-
+        /* 3. Centramos en el área segura de 1600px */
+        object-position: 50% center; 
+        
+        /* Opcional: Si quieres que se vea un pelín más de los que están arriba/abajo */
+        /* transform: scale(1.1); */
     }
 
     .contact { padding: 70px 4%; }
@@ -1052,21 +1058,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .team-top { padding: 32px 4% 16px; }
     .team-top h2 { font-size: clamp(1rem, 5.5vw, 1.5rem); }
     .team-bottom {
-        width: 100%;
-        max-width: 1921px; 
-        margin: 0 auto;
-        line-height: 0;
-        overflow: visible; /* Cambiado de hidden a visible para evitar recortes */
-        background: var(--off-white);
+        aspect-ratio: 1 / 1; /* Formato cuadrado para que sea súper alta */
     }
-
     .team-photo-group {
-        /* EFECTO ZOOM MÓVIL PEQUEÑO:
-           En pantallas muy estrechas, el zoom debe ser mayor. */
-        width: 135vw; /* Aún más ancha para ver el centro más grande */
-        height: auto !important;
+        /* Con 1/1 el zoom será mayor, enfocándose mucho más en los 
+           personajes centrales del área segura */
         object-fit: cover;
-        object-position: 50% center;
+    }
+    
 
     .footer-logo { height: 40px; }
 
