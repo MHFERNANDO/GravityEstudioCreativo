@@ -203,3 +203,16 @@ if (heroVideo) {
 
     videoObserver.observe(heroVideo);
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.hero-video-bg');
+    
+    // Intentar reproducir apenas cargue
+    video.play().catch(error => {
+        console.log("El autoplay fue bloqueado por el sistema, intentando de nuevo...");
+        
+        // Si falla (por ahorro de batería), lo intentamos al primer toque del usuario
+        document.addEventListener('touchstart', () => {
+            video.play();
+        }, { once: true });
+    });
+});

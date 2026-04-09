@@ -1102,3 +1102,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     object-position: center;
     transition: transform 0.3s ease; /* Opcional: suave transición al cambiar de tamaño */
 }
+video ::-webkit-media-controls { display: none !important; }
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
