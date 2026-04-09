@@ -1117,3 +1117,14 @@ video::-webkit-media-controls-start-playback-button {
 .hero-video-bg {
     pointer-events: none;
 }
+/* Intenta ocultar el botón de reproducción que pone iOS por defecto */
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* Asegura que el poster cubra todo el fondo igual que el video */
+.hero-video-bg {
+    object-fit: cover;
+    background-color: #000; /* Fondo negro por si la imagen tarda en cargar */
+}
