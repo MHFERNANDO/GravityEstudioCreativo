@@ -1107,3 +1107,13 @@ video::-webkit-media-controls-start-playback-button {
     display: none !important;
     -webkit-appearance: none;
 }
+/* Esto mata el botón de play de iOS a nivel de sistema */
+.hero-video-bg::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* Evita que el usuario pueda 'tocar' el video y que salga el play */
+.hero-video-bg {
+    pointer-events: none;
+}
