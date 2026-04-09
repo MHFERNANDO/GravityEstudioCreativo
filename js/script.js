@@ -216,3 +216,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     });
 });
+
+const video = document.querySelector('.hero-video-bg');
+
+// Función para intentar reproducir
+const forceAutoplay = () => {
+    video.play().catch(() => {
+        // Si falla (por bloqueo del cel), intentamos de nuevo al primer toque del usuario
+        window.addEventListener('touchstart', () => {
+            video.play();
+        }, { once: true });
+    });
+};
+
+// Ejecutar cuando el video esté listo
+video.addEventListener('canplaythrough', forceAutoplay);
+
+// Por si acaso, intentar de nuevo después de 1 segundo
+setTimeout(forceAutoplay, 1000);
