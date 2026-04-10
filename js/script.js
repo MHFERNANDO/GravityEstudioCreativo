@@ -80,23 +80,24 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ── TOUCH: SERVICIOS ── */
-// En móvil el texto es siempre visible (CSS lo maneja)
-// En tablet/touch el tap activa/desactiva el estado expandido
 document.querySelectorAll('.service-item').forEach(item => {
-    item.addEventListener('click', function () {
-        // Si estamos en móvil pequeño el CSS ya muestra el texto, no hacer nada
-        if (window.innerWidth <= 640) return;
+    item.addEventListener('click', function (e) {
+        if (window.innerWidth <= 640) return; // en móvil siempre visible, deja navegar
 
-        const isActive = this.classList.contains('touch-active');
-        // Cerrar todos
-        document.querySelectorAll('.service-item.touch-active')
-            .forEach(el => el.classList.remove('touch-active'));
-        // Abrir el tocado si no estaba activo
-        if (!isActive) this.classList.add('touch-active');
+        const isTouch = isTouchDevice();
+        if (!isTouch) return; // en desktop con mouse deja navegar normal
+
+        // En touch: primer tap muestra CTA, segundo tap navega
+        if (!this.classList.contains('touch-active')) {
+            e.preventDefault(); // evita navegar en el primer tap
+            document.querySelectorAll('.service-item.touch-active')
+                .forEach(el => el.classList.remove('touch-active'));
+            this.classList.add('touch-active');
+        }
+        // segundo tap: ya tiene touch-active, deja navegar al href
     });
 });
 
-// Cerrar al tocar fuera
 document.addEventListener('click', e => {
     if (!e.target.closest('.service-item')) {
         document.querySelectorAll('.service-item.touch-active')
@@ -186,11 +187,25 @@ function sendWap() {
     input.value = '';
 }
 
-/* ── VIDEO HERO — pausa cuando no está visible ── */
+/* ── VIDEO HERO — autoplay + fix iOS ── */
 const heroVideo = document.querySelector('.hero-video-bg');
 if (heroVideo) {
     heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; });
 
+    /* Intentar reproducir apenas cargue */
+    const forceAutoplay = () => {
+        heroVideo.play().catch(() => {
+            /* Si falla (ahorro de batería en iOS), reproducir al primer toque */
+            window.addEventListener('touchstart', () => {
+                heroVideo.play().catch(() => {});
+            }, { once: true });
+        });
+    };
+
+    heroVideo.addEventListener('canplaythrough', forceAutoplay);
+    setTimeout(forceAutoplay, 500);
+
+    /* Pausar cuando no es visible — ahorra batería */
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -203,34 +218,3 @@ if (heroVideo) {
 
     videoObserver.observe(heroVideo);
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const video = document.querySelector('.hero-video-bg');
-    
-    // Intentar reproducir apenas cargue
-    video.play().catch(error => {
-        console.log("El autoplay fue bloqueado por el sistema, intentando de nuevo...");
-        
-        // Si falla (por ahorro de batería), lo intentamos al primer toque del usuario
-        document.addEventListener('touchstart', () => {
-            video.play();
-        }, { once: true });
-    });
-});
-
-const video = document.querySelector('.hero-video-bg');
-
-// Función para intentar reproducir
-const forceAutoplay = () => {
-    video.play().catch(() => {
-        // Si falla (por bloqueo del cel), intentamos de nuevo al primer toque del usuario
-        window.addEventListener('touchstart', () => {
-            video.play();
-        }, { once: true });
-    });
-};
-
-// Ejecutar cuando el video esté listo
-video.addEventListener('canplaythrough', forceAutoplay);
-
-// Por si acaso, intentar de nuevo después de 1 segundo
-setTimeout(forceAutoplay, 1000);

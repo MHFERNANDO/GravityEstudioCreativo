@@ -205,10 +205,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     z-index: 0;
 }
 
-.hero-overlay {
+/*.hero-overlay {
     position: absolute; inset: 0;
-    
+    background: linear-gradient(
+        to bottom,
+        rgba(1,53,101,0.75) 0%,
+        rgba(1,53,101,0.65) 60%,
+        rgba(1,26,50,0.85)  100%
+    );
     z-index: 1;
+}*/
+
+/* iOS — ocultar controles nativos del video */
+.hero-video-bg::-webkit-media-controls,
+.hero-video-bg::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+.hero-video-bg {
+    pointer-events: none;
+    object-fit: cover;
+    background-color: #012348;
 }
 
 .hero-content {
@@ -237,7 +254,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     font-family: var(--font-display);
     font-size: clamp(3rem, 7vw, 7.5rem);
     font-weight: 800; line-height: 0.9; letter-spacing: -1px;
-    text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem;line-height: 1
+    text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem;
 }
 .hero-content h1 em { font-style: italic; color: var(--yellow); }
 
@@ -334,12 +351,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
     letter-spacing: 1.5px; color: var(--blue); text-transform: uppercase;
-    /*filter: grayscale(1) opacity(0.4);*/
+    filter: grayscale(1) opacity(0.4);
     transition: filter 0.3s var(--ease), border-color 0.3s, transform 0.3s var(--spring), box-shadow 0.3s;
-    
 }
 .client-logo:hover { filter: grayscale(0) opacity(1); border-color: var(--yellow); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-
 .client-logo img { max-height: 44px; max-width: 120px; object-fit: contain; filter: inherit; }
 
 /* ============================================
@@ -461,9 +476,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .service-item.touch-active { transform: scale(1.02); }
 
-@media (max-width: 900px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .service-large { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/7; }
+/* service-item como enlace — quitar estilos de <a> */
+a.service-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Botón CTA que aparece en hover */
+.service-item-cta {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--yellow);
+    color: var(--blue);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--r-xs);
+    white-space: nowrap;
+    z-index: 3;
+    transition: bottom 0.35s var(--ease) 0.05s, opacity 0.35s var(--ease) 0.05s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.service-item:hover .service-item-cta,
+.service-item.touch-active .service-item-cta {
+    bottom: 1.2rem;
+    opacity: 1;
+}
+
+/* En móvil siempre visible */
+@media (max-width: 640px) {
+    .service-item-cta {
+        bottom: 0.6rem !important;
+        opacity: 1 !important;
+        font-size: 0.62rem;
+        padding: 0.4rem 0.9rem;
+    }
 }
 @media (max-width: 640px) {
     .services { padding: 70px 4%; }
@@ -559,83 +613,58 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================
    EQUIPO — Texto arriba, foto abajo completa
    ============================================ */
-/* Corrección de la sección Team y error de caracteres */
 .team {
     background: var(--off-white);
     width: 100%;
-    padding-bottom: 60px;
 }
 
 .team-top {
     text-align: center;
-    padding: clamp(40px, 6vw, 80px) 6% clamp(20px, 4vw, 40px);
+    padding: 60px 6% 32px;
+    background: var(--off-white);
+}
+
+.team-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--blue);
+    opacity: 0.45;
+    margin-bottom: 1rem;
 }
 
 .team-top h2 {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 4vw, 3.5rem);
+    font-size: clamp(1.4rem, 2.8vw, 3rem);
     font-weight: 800;
     text-transform: uppercase;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
     color: var(--blue);
-    line-height: 1;
+    margin: 0;
 }
+
+.team-top h2 span { color: var(--yellow); }
 
 .team-bottom {
     width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
+    display: block;
     line-height: 0;
-}
-
-.team-photo-group {
-    width: 100%;
-    height: auto; /* Mantiene la proporción 1921x901 */
-    display: block;
-    object-fit: contain;
-}
-
-/* Ajustes de Negritas en Packs */
-.pack-card p strong {
-    font-weight: 800;
-    color: var(--blue);
-}
-
-/* Fix para dispositivos táctiles */
-@media (hover: none) and (pointer: coarse) {
-    .btn-primary:active, .btn-secondary:active { 
-        transform: scale(0.96); 
-    }
-    .wap-btn:active { 
-        transform: scale(0.92); 
-        background: var(--yellow); 
-    }
-}
-.team-bottom {
-    width: 100%;
-    /* Limitamos al ancho total de la imagen para evitar pixelación */
-    max-width: 1921px; 
-    margin: 0 auto;
-    overflow: hidden;
     background: var(--off-white);
+    max-height: 480px;
+    overflow: hidden;
 }
 
 .team-photo-group {
     width: 100%;
-    height: auto;
+    height: 480px;
     display: block;
-    /* "contain" asegura que los 1600px del área segura 
-       siempre estén visibles en el viewport */
-    object-fit: contain; 
-    /* Centramos para que el aire de los costados (fuera de los 1600px) 
-       se distribuya equitativamente */
-    object-position: center; 
+    object-fit: cover;
+    object-position: center top;
 }
 
-/* Ajuste fino para tablets donde el aspect ratio cambia */
-@media (max-width: 1024px) {
-    .team-bottom {
-        padding: 0 2%; /* Un pequeño respiro visual */
-    }}
 
 /* ============================================
    CONTACTO
@@ -942,20 +971,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 48px 5% 24px; }
     .team-top h2 { font-size: clamp(1.3rem, 4.5vw, 2.2rem); }
-    .team-bottom {
-        padding: 0 4%; /* Un respiro visual */
-    }
-    .team-photo-group {
-        /* EFECTO ZOOM TABLET:
-           Para tablets verticales, la imagen ya empieza a encogerse. 
-           Usamos transform-origin y transform para acercar el centro. */
-        width: 100%;
-        height: auto;
-        
-        /* Centramos la transformación y hacemos un zoom suave */
-        transform-origin: center center;
-        transform: scale(1.1); /* Zoom de 10% */
-    }
+    .team-bottom { max-height: none; }
+    .team-photo-group { height: auto; }
 
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.5rem 5%; }
     .footer-bottom { flex-direction: column; text-align: center; padding: 1rem 5%; gap: 0.3rem; }
@@ -996,30 +1013,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 40px 4% 20px; }
     .team-top h2 { font-size: clamp(1.2rem, 5.5vw, 1.8rem); }
-    .team-bottom { 
-        width: 100%;
-        max-height: none !important;
-        /* Forzamos una nueva proporción para que se vea más alta */
-        /* 4/3 es un formato más cuadrado/alargado que el 16:9 original */
-        aspect-ratio: 4 / 3; 
-        overflow: hidden;
-        padding: 0;
-    }
-
-    .team-photo-group { 
-        width: 100% !important;
-        height: 100% !important; /* Ahora llena el 4/3 de arriba */
-        
-        /* 1. Mantenemos las proporciones reales para que no se deformen las caras */
-        /* 2. Hacemos que la imagen se estire para llenar el nuevo alto (Zoom automático) */
-        object-fit: cover; 
-        
-        /* 3. Centramos en el área segura de 1600px */
-        object-position: 50% center; 
-        
-        /* Opcional: Si quieres que se vea un pelín más de los que están arriba/abajo */
-        /* transform: scale(1.1); */
-    }
+    .team-bottom { max-height: none; }
+    .team-photo-group { height: auto; }
 
     .contact { padding: 70px 4%; }
     .contact-inner { gap: 2.5rem; }
@@ -1057,74 +1052,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     .team-top { padding: 32px 4% 16px; }
     .team-top h2 { font-size: clamp(1rem, 5.5vw, 1.5rem); }
-    .team-bottom {
-        aspect-ratio: 1 / 1; /* Formato cuadrado para que sea súper alta */
-    }
-    .team-photo-group {
-        /* Con 1/1 el zoom será mayor, enfocándose mucho más en los 
-           personajes centrales del área segura */
-        object-fit: cover;
-    }
-    
+    .team-bottom { max-height: none; }
+    .team-photo-group { height: auto; }
 
     .footer-logo { height: 40px; }
 
     .wap-panel { width: calc(100vw - 24px); bottom: calc(100% + 10px); }
     .wap-btn { width: 50px; height: 50px; }
-}
-
-/* ============================================
-   SECCIÓN EQUIPO — GRAVITY v5.1 Final
-   ============================================ */
-
-.team {
-    background: var(--off-white);
-    width: 100%;
-    padding-bottom: clamp(40px, 6vw, 80px); /* Padding responsivo al final */
-}
-
-/* Preparamos el contenedor para el efecto de zoom */
-.team-bottom {
-    width: 100%;
-    /* Limitamos al ancho total de la imagen para desktop */
-    max-width: 1921px; 
-    margin: 0 auto;
-    overflow: hidden; /* IMPORTANTE: Oculta los laterales en móvil */
-    background: var(--off-white);
-    line-height: 0;
-}
-
-.team-photo-group {
-    width: 100%;
-    height: auto; /* Mantiene proporción */
-    display: block;
-    object-fit: contain; /* Comportamiento por defecto para desktop */
-    object-position: center;
-    transition: transform 0.3s ease; /* Opcional: suave transición al cambiar de tamaño */
-}
-video ::-webkit-media-controls { display: none !important; }
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
-/* Esto mata el botón de play de iOS a nivel de sistema */
-.hero-video-bg::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
-
-/* Evita que el usuario pueda 'tocar' el video y que salga el play */
-.hero-video-bg {
-    pointer-events: none;
-}
-/* Intenta ocultar el botón de reproducción que pone iOS por defecto */
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
-
-/* Asegura que el poster cubra todo el fondo igual que el video */
-.hero-video-bg {
-    object-fit: cover;
-    background-color: #000; /* Fondo negro por si la imagen tarda en cargar */
 }
