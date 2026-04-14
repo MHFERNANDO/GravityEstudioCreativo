@@ -1087,4 +1087,28 @@ a.service-item {
 @media (max-width: 640px) {
     .instagram-feed { padding: 70px 4%; }
 }
+
+/* Por defecto, la imagen de móvil está oculta */
+.mobile-only {
+    display: none;
+}
+
+/* Cuando la pantalla es de 600px o menos (Móvil) */
+@media (max-width: 600px) {
+    .desktop-only {
+        display: none !important; /* Escondemos el video */
+    }
+    .mobile-only {
+        display: block !important; /* Mostramos el picture */
+    }
+    .mobile-only img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
  

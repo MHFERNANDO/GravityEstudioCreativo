@@ -65,7 +65,7 @@
     <!-- ======= HERO ======= -->
     <header class="hero" id="inicio">
         <video
-            class="hero-video-bg"
+            class="hero-video-bg desktop-only"
             autoplay
             muted
             loop
@@ -76,6 +76,12 @@
         >
             <source src="assets/Hero.mp4" type="video/mp4">
         </video>
+
+        <picture class="mobile-only">
+            <source media="(max-width: 600px)" srcset="assets/preview.jpeg">
+            <img src="assets/preview.jpeg" alt="Gravity Hero" class="hero-video-bg">
+        </picture>
+
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">✦ Estudio Creativo · Cuenca, Ecuador</div>
@@ -95,7 +101,6 @@
             </div>
         </div>
     </header>
-
     <!-- ======= CLIENTES ======= -->
     <section id="clientes" class="clients">
         <div class="section-header reveal">
