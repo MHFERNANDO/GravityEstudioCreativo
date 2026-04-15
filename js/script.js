@@ -124,7 +124,7 @@ function handleForm(e) {
     const subject = encodeURIComponent(`Nuevo contacto web — ${name}`);
     let body = `Hola equipo Gravity!\n\nNombre: ${name}\nEmail: ${email}`;
     if (brand)   body += `\nMarca: ${brand}`;
-    if (pack)    body += `\nPack de interés: ${pack}`;
+    if (pack)    body += `\nPlan de interés: ${pack}`;
     if (message) body += `\n\nMensaje:\n${message}`;
 
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${encodeURIComponent(body)}`;
